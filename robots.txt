@@ -1,0 +1,8 @@
+# robots.txt for http://auroraprof.ru
+
+User-agent: *
+Disallow: /admin/
+
+User-agent: Yandex
+Disallow: /admin/
+Host: ivtexservis.ru
