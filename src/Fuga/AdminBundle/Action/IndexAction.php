@@ -125,7 +125,7 @@ class IndexAction extends Action {
 						$tableHtml .= $ft->getStatic();
 					}
 					if ($num == 0) {
-						if ($this->dataTable->dbName() == 'page_page' && $node['module_id']) {
+						if ($this->dataTable->dbName() == 'page_page' && isset($node['module_id_name'])) {
 							$module = $this->get('container')->getModule($node['module_id_name']);
 							if ( $module ) {
 								$tableHtml .= ' (тип &mdash; '.$module['title'].')';
