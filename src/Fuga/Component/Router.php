@@ -10,6 +10,22 @@ class Router {
 	private $url;
 	private $params = array();
 	private $paths = array();
+	private $oldpaths = array(
+		'/node/5'  => '/about',
+		'/node/6'  => '/clients',
+		'/node/7'  => '/partners',
+		'/node/8'  => '/honor',
+		'/node/9'  => '/contacts',
+		'/node/10' => '/audit',
+		'/node/11' => '/repair',
+		'/node/12' => '/start-up-operations',
+		'/node/14' => '/metalwork',
+		'/node/17' => '/catalog',
+		'/node/19' => '/sitemap',
+		'/node/20' => '/repair-turning',
+		'/node/21' => '/repair-milling',
+		'/node/22' => '/repair-boring',
+	);
 	private $locales = array(array('name' => 'ru'));
 	
 	public function __construct($container){
@@ -73,7 +89,7 @@ class Router {
 	}
 	
 	/**
-	 * Разбирает URL на части /Controller/Action/Params
+	 * Разбирает URL на части /Node/Action/Params
 	 */
 	public function getRoute($url = '/') {
 		if ('/' == $url) {
@@ -87,7 +103,21 @@ class Router {
 			header("HTTP/1.1 301 Moved Permanently");
 			header("Location: ".$url);
 			exit();
-		} elseif (preg_match('/^(\/[a-z0-9\-]+)+$/', $url)) {
+		} elseif (preg_match('/^\/node\/([0-9]+)/', $url, $matches)) {
+			if ($this->container->count('news_news', 'id='.$matches[1])) {
+				$url = '/news/read/'.$matches[1];
+			} else {
+				$url = str_replace($matches[0], $this->oldpaths[$matches[0]], $url);
+			}
+			header("HTTP/1.1 301 Moved Permanently");
+			header("Location: ".$url);
+			exit();
+		} elseif (preg_match('/^\/taxonomy\/term\/7/', $url)) {
+			$url = '/news';
+			header("HTTP/1.1 301 Moved Permanently");
+			header("Location: ".$url);
+			exit();		
+		} elseif (preg_match('/^(\/[a-z0-9\-]+)+$/', $url, $matches)) {
 			$path = explode('/', $url);
 			array_shift($path);
 			$node = array_shift($path);
@@ -98,13 +128,6 @@ class Router {
 				'action' => $action,
 				'params' => $params
 			);
-		} elseif (preg_match('/^\/[a-z0-9\-]+\/?[a-z0-9\-\.]*(\.htm)?$/', $url)) {
-			$url = str_replace('.htm', '', $url);
-			$url = str_replace('/index.', '/', $url);
-			$url = str_replace('.', '/', $url);
-			header("HTTP/1.1 301 Moved Permanently");
-			header("Location: ".$url);
-			exit();
 		} else {
 			throw new NotFoundHttpException('Несуществующая страница');
 		}

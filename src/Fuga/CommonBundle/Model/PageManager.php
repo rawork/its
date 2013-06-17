@@ -6,7 +6,7 @@ class PageManager extends ModelManager {
 	
 	private $node;
 	
-	public function getNodes($uri = 0, $where = "publish=1") {
+	public function getNodes($uri = 0, $recursive = false, $where = "publish=1") {
 		$nodes = $this->get('container')->getItemsRaw(
 			'SELECT t1.*, t3.name as module_id_name, t3.path as module_id_path FROM page_page as t1 '.
 			'LEFT JOIN page_page as t2 ON t1.parent_id=t2.id '.
@@ -15,6 +15,10 @@ class PageManager extends ModelManager {
 			'ORDER BY t1.sort,t1.name '
 		);
 		foreach ($nodes as &$node) {
+			if ($recursive) {
+				$node['children'] = $this->getNodes($node['name'], $recursive, $where);
+			}
+			$node['class'] = empty($node['children']) ? 'collapsed' : 'leaf';
 			$node['ref'] = $this->getUrl($node);
 		}
 		

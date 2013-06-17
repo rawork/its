@@ -109,7 +109,6 @@ class IndexAction extends Action {
 			$tableHtml .= '<td width="1%"><input type="checkbox" class="list-checker" value="'.$node['id'].'"></td><td width="1%">'.$node['id'].'</td>';
 			$num = 0;
 
-//			$childrenNodes = $this->getTree($node['id'], $prefixWidth + 20, $styleClass);
 			$prefixWidth = 20 * ((int)$node['level']-1);
 			foreach ($this->dataTable->fields as $field) {
 				if (!empty($field['width'])) {
@@ -138,7 +137,6 @@ class IndexAction extends Action {
 				$num++;
 			}
 			$tableHtml .= $this->_getUpdateDelete($node['id']).'</tr>';
-//			$tableHtml .= $childrenNodes;
 		}
 		
 		return $tableHtml;

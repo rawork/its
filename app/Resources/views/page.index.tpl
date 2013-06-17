@@ -1,83 +1,144 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>{$title}</title>
-		{$meta}
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="/bundles/bootstrap_new/css/bootstrap.css" rel="stylesheet" type="text/css">
-		<link href="/bundles/public/css/default.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="/bundles/public/js/jquery.js"></script>
-		<script type="text/javascript" src="/bundles/public/js/public.functions.js"></script>
-	</head>
-	<body>
-		<div class="drop-shadow curved curved-hz-1">
-			<div class="menu">
-				<div class="container">
-					<div class="row-fluid">
-						<div class="span5">
-							<img src="/bundles/public/img/avrora-logo.png" />
-						</div>	
-						<div class="span7">
-							<div class="slogan">{raMethod path=Fuga:Public:Common:block args=["name":"slogan"]}</div>
-							<div class="phones">{raMethod path=Fuga:Public:Common:block args=["name":"phones"]}</div>
-							<a class="call-order pull-right" href="javascript:toggleBlock('form-call')">Заказать звонок</a>
-						</div>
+<head>
+<title>{$title}</title>
+{$meta}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/bundles/bootstrap_new/css/bootstrap.css" type="text/css">
+<link rel="stylesheet" href="/bundles/public/css/default.css" type="text/css">
+<link href=”/favicon.ico” rel=”icon” type=”image/x-icon” />
+<link href=”/favicon.ico” rel=”shortcut icon” type=”image/x-icon” />
+</head>
+<body>
+	<div class="container">
+		<div class="row-fluid" id="header">
+			<div class="span6 logo">
+				<div class="title"><a href="/" title="Ивтехсервис - металлорежущие станки с ЧПУ"><img src="/bundles/public/img/logo.jpg"></a></div>
+			</div>
+			<div class="span6">
+				<div>
+					<div class="pull-right">
+						<ul id="other-menu">
+							<li class="item1"><a href="/" title="На главную">На главную</a></li>
+							<li class="item2"><a href="mailto:its@ivtexservis.ru" title="Электронная почта">Электронная почта</a></li>
+							<li class="item3"><a href="/sitemap" title="Карта сайта">Карта сайта</a></li>
+						</ul>
+						
 					</div>
-					<div class="row-fluid">
-						<div class="span12">
-							<div class="navbar">
-								<div class="navbar-inner">
-									<ul class="nav">
-										<li class="active"><a href="/">Главная</a></li>
-										{foreach item=node from=$links}
-										<li><a href="{$node.ref}">{$node.title}</a></li>
-										{/foreach}
-								    </ul>	
-								</div>
-							</div>
-						</div>
-					</div>	
+					<div class="clearfix"></div>
+					<div class="contacts pull-right">
+						<p class="phone">{raMethod path=Fuga:Public:Common:block args='["name":"phone"]'}</p>
+						{raMethod path=Fuga:Public:Common:block args='["name":"address"]'}
+					</div>
+					<div class="cool-man-container"><div id="cool-man"></div></div>
 				</div>
 			</div>
 		</div>
-		<div class="drop-shadow curved curved-hz-1">
-			<div class="hero">
-				<div class="container">
-					{raMethod path=Fuga:Public:Service:links}
-					<h1>{$h1}</h1>
-					<div class="row-fluid">
-						<div class="span12 content ramka">
-							{eval var=$mainbody}
-						</div>
+		<div class="row-fluid">
+			<div class="span3 menu">
+				<div class="sideblock">
+					<div class="title">Навигация</div>
+					<div class="content">
+						<ul class="menu">
+						<li class="leaf"><a href="/" class="active">Главная</a></li>
+						{foreach item=node from=$links}
+						<li class="{$node.class}"><a href="{$node.ref}">{$node.title}</a></li>
+						{/foreach}
+						</ul>
 					</div>
-					<div class="row-fluid">
-						<div class="span12">
-							{raMethod path=Fuga:Public:News:lenta}
-						</div>
+				</div>
+				<div class="sideblock">
+					<div class="title">Выполнение заказов</div>
+					<div class="content">
+						<p><a href="/publicatshow">Просмотреть ход выполнения</a></p>
 					</div>
-				</div>	
-			</div>
-		</div>
-		<div class="footer">
-			<div class="container">
-				<div class="row-fluid">
-					<div class="span6">
-						{raMethod path=Fuga:Public:Common:block args=["name":"copyright"]}
+				</div>
+				<div class="sideblock">
+					<div class="title">Прайс-лист</div>
+					<div class="content">
+						{raMethod path=Fuga:Public:Common:block args='["name":"pricelist"]'}
 					</div>
-					<div class="span6">
-						<div>
-						<form class="form-search" method="get">
-							<input type="text" name="text" class="input-middle search-query" placeholder="Поиск на сайте">
-							<a class="btn btn-small"><i class="icon-search"></i></a>
+				</div>
+				{raMethod path=Fuga:Public:Catalog:offer}
+				{raMethod path=Fuga:Public:Catalog:new}
+				<div class="sideblock">
+					<div class="title">Поиск</div>
+					<div class="content">
+						<form method="get" action="/search">
+							<input type="text" name="text" class=" search-query">
+							<input type="submit" value="Поиск" class="btn btn-mini btn-info" />
 						</form>
-						</div>	
 					</div>
 				</div>	
+				<div class="sideblock">
+					<div class="title">Обратная связь</div>
+					<div class="content">
+						<p class="buttons">
+							<div><a class="btn btn-danger btn-block" href="javascript:void(0)">Пожаловаться</a></div>
+							<div><a class="btn btn-success btn-block" href="javascript:void(0)">Поблагодарить</a></div>
+							<div><a class="btn btn-warning btn-block" href="javascript:void(0)">Обратная связь</a></div>
+						</p>
+					</div>
+				</div>
+				<div class="sideblock">
+					<div class="title">Активно участвуем</div>
+					<div class="content">
+					{raMethod path=Fuga:Public:Common:block args='["name":"community"]'}	
+					</div>
+				</div>
+				<div class="sideblock">
+					<div class="title">Инструкции</div>
+					<div class="content">
+						{raMethod path=Fuga:Public:Common:block args='["name":"instruction"]'}
+					</div>
+				</div>
+						
+			</div>
+			<div class="span9 maincontent">
+				<h1><span>Компания &laquo;Ивтехсервис&raquo;<br> <strong>Сильнее стали!</strong></span></h1>
+				{raMethod path=Fuga:Public:Common:block args='["name":"welcome"]'}
+				
+				{raMethod path=Fuga:Public:Catalog:leaders}
+				{raMethod path=Fuga:Public:Catalog:blocks}
+				<br>
+				{$mainbody}
+				<br>
+				{raMethod path=Fuga:Public:News:lenta}
+				<h2><span>Наши сайты</span></h2>
+				<div class="content-block">
+					<p><a target="_blank" href="http://pragati.ru/"><img alt="Pragati" src="/files/ban1.jpg" /></a>
+						&nbsp;
+					<a target="_blank" href="http://tdsks.su/"><img alt="СтанКомплектСервис" src="/files/ban2.jpg" /></a></p>
+				</div>
+				<h2><span>Наши партнеры</span></h2>
+				<div class="content-block partners">
+					<ul>
+						<li><a href="/partners#thomas" title=""><img src="/files/u1/p-thomas.jpg" width="130" height="28" /></a></li>
+						<li><a href="/partners/#omron" title=""><img src="/files/u1/p-omron.jpg" width="119" height="28" /></a></li>
+						<li><a href="http://pragati.ru/" title=""><img src="/files/u1/p-pragati.jpg" width="148" height="28" /></a></li>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+				{raMethod path=Fuga:Public:Common:block args='["name":"seo_text"]'}
 			</div>
 		</div>
-		<div id="form-call" class="closed ramka-orange">
-			<a href="javascript:toggleBlock('form-call')" class="close">&times;</a>
-			{raMethod path=Fuga:Public:Calc:callform}
+		<div class="prefooter"><div class="pull-right"></div></div>
+		<div class="row-fluid">
+			<div class="span12 footer">
+				<div class="copy pull-left">{raMethod path=Fuga:Public:Common:block args='["name":"copyright"]'}</div>
+				<ul class="bottom-menu">
+					<li><a href="/" class="active">Главная</a></li>
+					{foreach item=node from=$links}
+					<li><a href="{$node.ref}">{$node.title}</a></li>
+					{/foreach}
+				</ul>
+				<div class="clearfix"></div>
+				<div class="counters">
+					{include file='counters.tpl'}
+				</div>
+			</div>
 		</div>
-	</body>
+	</div>
+	<script type="text/javascript" src="/bundles/public/js/jquery.js"></script>
+	<script type="text/javascript" src="/bundles/public/js/functions.js"></script>
+</body>
 </html>

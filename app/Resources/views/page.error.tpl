@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="error">
-		<div><a href="/"><img src="/bundles/public/img/avrora-logo.png"></a></div>
+		<div><a href="/"><img src="/bundles/public/img/logo.jpg"></a></div>
 		<br>
 		<h1>{$status_code}</h1>
 		<div class="error-text">{$status_text}.<br><a href="/">Перейти на главную страницу</a></div>

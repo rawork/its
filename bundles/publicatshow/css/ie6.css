@@ -1,0 +1,6 @@
+body {
+	filter: expression(document.execCommand("BackgroundImageCache", false, true));
+}
+.dtrmain {
+left: -173px;
+}

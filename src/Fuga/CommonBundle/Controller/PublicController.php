@@ -13,6 +13,11 @@ class PublicController extends Controller {
 		}
 	}
 	
+	public function mapAction() {
+		return null;
+	}
+
+
 	public function getParam($name) {
 		return $this->params[$name];
 	}

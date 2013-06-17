@@ -123,12 +123,18 @@ class PageController extends Controller {
 		if (!$node) {
 			throw $this->createNotFoundException('Несуществующая страница');
 		}
+		$links = $this->getManager('Fuga:Common:Page')->getNodes('/', true);
+		foreach ($links as &$link) {
+			
+			$link['children'] = $this->getManager('Fuga:Common:Page')->getNodes($link['name'], true);
+		}
+		unset($link);
 		$params = array(
 			'h1'       => $this->getH1(),
 			'title'    => $this->getManager('Fuga:Common:Meta')->getTitle() ?: strip_tags($this->getTitle()),
 			'mainbody' => $this->staticAction().$this->getContent(),
 			'meta'     => $this->getManager('Fuga:Common:Meta')->getMeta(),
-			'links'    => $this->getManager('Fuga:Common:Page')->getNodes('/'),
+			'links'    => $links,
 			'action'   => $this->get('router')->getParam('action'),
 			'curnode'	   => $node,
 		);

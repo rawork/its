@@ -266,6 +266,7 @@ class Table {
 				try {
 					$column = $table->getColumn($field['name']);
 					if ($column->getType()->getName() != $this->realType($field['type'])) {
+						$this->get('log')->write($field['type']);
 						$table->changeColumn(
 							$field['name'], 
 							array('Type' => \Doctrine\DBAL\Types\Type::getType($this->realType($field['type']))
@@ -293,10 +294,15 @@ class Table {
 			
 			$queries = $fromSchema->getMigrateToSql($toSchema, $this->get('connection1')->getDatabasePlatform());
 			foreach ($queries as $sql) {
+				$this->get('log')->write($sql);
 				$this->get('connection1')->query($sql);
 			}
+			
 			return true;
 		} catch (\Exception $e) {
+			$this->get('log')->write($e->getMessage());
+			$this->get('log')->write($e->getTraceAsString());
+			
 			return false;
 		}	
 		
@@ -558,12 +564,12 @@ class Table {
 	}
 
 	function count($criteria = '') {
-		$sql = 'SELECT COUNT(id) as с FROM '.$this->dbName().' WHERE '.$criteria;
+		$sql = 'SELECT COUNT(id) as quantity FROM '.$this->dbName().' WHERE '.$criteria;
 		$stmt = $this->get('connection1')->prepare($sql);
 		$stmt->execute();
 		$item = $stmt->fetch();
 		
-		return $item ? (int)$item['c'] : 0;
+		return $item ? (int)$item['quantity'] : 0;
 	}
 
 	private function setTableFields () {
