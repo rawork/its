@@ -47,8 +47,8 @@ DirectoryIndex index.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    RewriteCond %{HTTP_HOST} ^www\.colors-life\.ru$ [NC]
-    RewriteRule ^(.*)$ http://colors-life.ru/$1 [L,R=301]
+    RewriteCond %{HTTP_HOST} ^www\.ivtexservis\.ru$ [NC]
+    RewriteRule ^(.*)$ http://ivtexservis.ru/$1 [L,R=301]
 
     <IfModule mod_vhost_alias.c>
         RewriteBase /
