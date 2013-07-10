@@ -5,7 +5,7 @@ use Fuga\CommonBundle\Security\Captcha\KCaptcha;
 use Fuga\CommonBundle\Controller\PageController;
 
 if (preg_match('/^\/secureimage\//', $_SERVER['REQUEST_URI'])) {
-	include_once($_SERVER['DOCUMENT_ROOT'].'/src/Fuga/CommonBundle/Security/Captcha/KCaptcha.php');
+	require_once($_SERVER['DOCUMENT_ROOT'].'/src/Fuga/CommonBundle/Security/Captcha/KCaptcha.php');
 	session_start();
 	$captcha = new KCaptcha();
 	$_SESSION['captchaHash'] = md5($captcha->getKeyString().'FWK');

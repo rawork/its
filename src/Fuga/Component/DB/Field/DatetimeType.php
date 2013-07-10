@@ -15,10 +15,6 @@ class DatetimeType extends Type {
 			'time' => 8
 		);
 	}
-	/*** implementation */
-	public function getSQL() {
-		return $this->getName().' datetime NOT NULL default \'0000-00-00 00:00:00\'';
-	}
 
 	public function value2YMD($value = '') {
 		if (!empty($value)) {

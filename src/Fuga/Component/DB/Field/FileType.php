@@ -9,11 +9,12 @@ class FileType extends Type {
 
 	protected function afterUpload($fileName) {}
 	
+	/* TODO убрать этот метод совсем он используется в templatetype */
 	protected function getPath() {
 		global $PRJ_DIR, $UPLOAD_REF;
 		$date = new \Datetime();
 		$path = $UPLOAD_REF.$date->format('/Y/m/d/');
-		@mkdir($PRJ_DIR.$path, 0755, true);
+		@mkdir($PRJ_DIR.$path, 0777, true);
 		return $path;
 	}
 

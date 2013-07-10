@@ -3,6 +3,7 @@
 <title>{$title}</title>
 {$meta}
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/bundles/bootstrap_new/css/bootstrap.css" type="text/css">
 <link rel="stylesheet" href="/bundles/public/css/default.css" type="text/css">
 <link href=”/favicon.ico” rel=”icon” type=”image/x-icon” />
@@ -73,9 +74,9 @@
 					<div class="title">Обратная связь</div>
 					<div class="content">
 						<p class="buttons">
-							<div><a class="btn btn-danger btn-block" href="javascript:void(0)">Пожаловаться</a></div>
-							<div><a class="btn btn-success btn-block" href="javascript:void(0)">Поблагодарить</a></div>
-							<div><a class="btn btn-warning btn-block" href="javascript:void(0)">Обратная связь</a></div>
+							<div><a class="btn btn-danger btn-block" href="javascript:feedbackOpen(1)">Пожаловаться</a></div>
+							<div><a class="btn btn-success btn-block" href="javascript:feedbackOpen(2)">Поблагодарить</a></div>
+							<div><a class="btn btn-warning btn-block" href="javascript:feedbackOpen(3)">Обратная связь</a></div>
 						</p>
 					</div>
 				</div>
@@ -138,7 +139,33 @@
 			</div>
 		</div>
 	</div>
+	<div id="myModal" class="modal hide fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3 id="feedback-title"></h3>
+		</div>
+		<div class="modal-body">
+			<div id="feedbackform" class="hidden alert alert-success"></div>
+			<form name="feedbackform" method="post">
+				<fieldset>
+				  <input type="hidden" name="feedback_type" value="3">
+				  <label>Контактное лицо <span class="form-required">*</span></label>
+				  <input type="text" name="feedback_person" class="span6" placeholder="Контактное лицо">
+				  <label>Телефон <span class="form-required">*</span></label>
+				  <input type="text" name="feedback_phone" class="span6" placeholder="Например, +7 (999) 888-88-88">
+				  <label>Эл. почта <span class="form-required">*</span></label>
+				  <input type="text" name="feedback_email" class="span6" placeholder="Адрес электронной почты">
+				  <label>Сообщение</label>
+				  <div><textarea name="feedback_comment" class="span6"></textarea></div>
+				</fieldset>
+			</form>
+		</div>
+		<div class="modal-footer">
+		  <a href="javascript:feedbackSend()" class="btn btn-primary">Отправить</a>
+		</div>
+	</div>
 	<script type="text/javascript" src="/bundles/public/js/jquery.js"></script>
+	<script type="text/javascript" src="/bundles/bootstrap_new/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/bundles/public/js/functions.js"></script>
 </body>
 </html>

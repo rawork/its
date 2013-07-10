@@ -16,12 +16,13 @@ class FileStorage implements StorageInterface {
 	
 	public function save($filename, $sourcePath) {
 		$filename = $this->unique($filename);
-		$createPath = $this->createPath();
-		move_uploaded_file($sourcePath, $this->realPath($createPath.$filename));
-		chmod($this->realPath($createPath.$filename), 0666);
-		return $this->path($createPath.$filename);
+		$createFileName = $this->createPath().$filename;
+		move_uploaded_file($sourcePath, $this->realPath($createFileName));
+		chmod($this->realPath($createFileName), 0666);
+		return $this->path($createFileName);
 	}
 	
+	// TODO копирование файла какое то убогое
 	public function copy($filename, $sourcePath) {
 		@copy($sourcePath, $this->realPath($filename));
 		return $this->path($filename);
@@ -39,7 +40,6 @@ class FileStorage implements StorageInterface {
 	}
 	
 	private function createPath() {
-		global $PRJ_DIR, $UPLOAD_REF;
 		$date = new \Datetime();
 		$path = $this->uploadpath.$date->format('/Y/m/d/');
 		@mkdir($this->realpath.$path, 0777, true);

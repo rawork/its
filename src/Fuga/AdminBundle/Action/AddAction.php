@@ -18,7 +18,8 @@ class AddAction extends Action {
 					$path = $this->fullRef.'/add';
 					$_SESSION['message'] = 'Ошибка добавления';
 				}
-				header('location: '.$path);	
+				header('location: '.$path);
+				exit;
 			} else {
 				$this->messageAction($this->dataTable->insertGlobals() ? 'Добавлено' : 'Ошибка добавления');
 			}
@@ -26,8 +27,7 @@ class AddAction extends Action {
 		if ($text = $this->render('admin/components/'.$this->get('router')->getParam('module').'.'.$this->get('router')->getParam('table').'.tpl', array(), true)){
 			return $text;
 		} else {
-			reset($this->dataTable->fields);
-			$ret = '';
+			$content = '';
 			$fields = '';
 			foreach ($this->dataTable->fields as $field) {
 				if (empty($field['readonly'])) {
@@ -40,18 +40,18 @@ class AddAction extends Action {
 					$fields .= $ft->getInput().'</td></tr>';
 				}
 			}
-			$ret .= '<br><form enctype="multipart/form-data" method="post" name="frmInsert" id="frmInsert" action="'.$this->fullRef.'/add">';
-			$ret .= '<input type="hidden" id="utype" name="utype" value="0">';
-			$ret .= '<table class="table table-condensed">';
-			$ret .= '<thead><tr>';
-			$ret .= '<th>Новый элемент<a name=add></a></td>';
-			$ret .= '<th></th></tr></thead>';
-			$ret .= $fields;
-			$ret .= '</table>
+			$content .= '<br><form enctype="multipart/form-data" method="post" name="frmInsert" id="frmInsert" action="'.$this->fullRef.'/add">';
+			$content .= '<input type="hidden" id="utype" name="utype" value="0">';
+			$content .= '<table class="table table-condensed">';
+			$content .= '<thead><tr>';
+			$content .= '<th>Новый элемент</th>';
+			$content .= '<th></th></tr></thead>';
+			$content .= $fields;
+			$content .= '</table>
 <input type="button" class="btn btn-success" onClick="preSubmit(\'frmInsert\', 0)" value="Сохранить">
 <input type="button" class="btn" onClick="preSubmit(\'frmInsert\', 1)" value="Применить">
-<input type="button" class="btn" onClick="window.location = \''.$this->fullRef.'\'" value="Отменить"></form>';
-			return $ret;
+<a class="btn btn-error" href="'.$this->fullRef.'" value="Отменить"></form>';
+			return $content;
 		}
 	}
 

@@ -29,6 +29,17 @@ class ImageType extends FileType {
 		}
 		return $fileName ? '<a target="_blank" href="'.$this->dbValue.'"><img '.$width.' border="0" src="'.$fileName.'"></a><div>('.$this->get('imagestorage')->size($this->dbValue).')</div>'.$additionalFiles : '';
 	}
+	
+	public function getGroupStatic() {
+		$fileName = $this->dbValue;
+		$width = 'width="50"';
+		$this->get('imagestorage')->setOptions(array('sizes' => $this->params['sizes']));
+		$files = $this->get('imagestorage')->additionalFiles($fileName);
+		if (isset($files['default'])) {
+			$fileName = $files['default']['path'];
+		}
+		return $fileName ? '<a target="_blank" href="'.$this->dbValue.'"><img '.$width.' border="0" src="'.$fileName.'"></a>' : '';
+	}
 
 	public function getSQLValue($inputName = '') {
 		$this->get('imagestorage')->setOptions(array('sizes' => $this->params['sizes']));

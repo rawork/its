@@ -153,7 +153,7 @@ class Table {
 				'name'		=> 'type',
 				'title'		=> 'Тип поля',
 				'type'		=> 'enum',
-				'select_values' => 'HTML|html;Выбор|select;Выбор из дерева|select_tree;Выбор множества|select_list;Дата|date;Дата и время|datetime;Деньги|currency;Текст|text;Пароль|password;Перечисление|enum;Рисунок|image;Строка|string;Файл|file;Флажок|checkbox;Целое число|number;Шаблон|template',
+				'select_values' => 'HTML|html;Выбор|select;Выбор из дерева|select_tree;Выбор множества|select_list;Галерея|gallery;Дата|date;Дата и время|datetime;Деньги|currency;Пароль|password;Перечисление|enum;Рисунок|image;Строка|string;Текст|text;Файл|file;Флажок|checkbox;Целое число|number;Шаблон|template',
 				'defvalue'	=> 'string',
 				'width'		=> '21%'
 			),

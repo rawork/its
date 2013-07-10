@@ -15,10 +15,6 @@ class LookUpType extends Type {
 		}
 	}
 
-	public function getSQL() {
-		return $this->getName().' int(11) NOT NULL default 0';
-	}
-
 	public function getValue($name = '') {
 		$name = $name ? $name : $this->getName();
 		$value = isset($_REQUEST[$name]) ? intval($_REQUEST[$name]) : 0;

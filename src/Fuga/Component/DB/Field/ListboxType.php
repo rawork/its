@@ -7,10 +7,6 @@ class ListboxType extends Type {
 		parent::__construct($params, $entity);
 	}
 
-	public function getSQL() {
-		return '';
-	}
-
 	public function listbox_getInput($value, $name) {
 		$where = '';
 		if (!empty($this->params['query']))

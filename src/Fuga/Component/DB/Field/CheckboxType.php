@@ -7,10 +7,6 @@ class CheckboxType extends Type {
 		parent::__construct($params, $entity);
 	}
 
-	public function getSQL() {
-		return $this->getName()." TINYINT(1) NULL DEFAULT  '0'";
-	}
-
 	public function getSQLValue($name = '') {
 		return $this->getValue($name) == '1' ? $this->getValue($name) : 0;
 	}

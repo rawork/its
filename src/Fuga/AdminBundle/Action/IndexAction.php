@@ -65,7 +65,7 @@ class IndexAction extends Action {
 						$sFieldHtml .= $ft->getGroupInput();
 						$this->showGroupSubmit = true;
 					} else {
-						$sFieldHtml .= $ft->getStatic();
+						$sFieldHtml .= $ft->getGroupStatic();
 					}
 					$tableHtml .= ($sFieldHtml ? $sFieldHtml : '&nbsp;').'</td>'."\n";
 				}

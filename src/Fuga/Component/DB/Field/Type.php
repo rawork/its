@@ -17,6 +17,10 @@ class Type {
 			$this->params['l_sort'] = $this->params['l_field'];
 		}
 	}
+	
+	public function getParam($name) {
+		return isset($this->params[$name])? $this->params[$name] : null;
+	}
 
 	public function setEntity($entity = null) {
 		if (is_array($entity)) {
@@ -33,6 +37,10 @@ class Type {
 
 	public function getGroupInput() {
 		return $this->getInput('', $this->getName().$this->dbId, 'input-mini');
+	}
+	
+	public function getGroupStatic() {
+		return $this->getStatic();
 	}
 
 	public function getGroupSQLValue() {

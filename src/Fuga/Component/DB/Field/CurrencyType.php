@@ -7,10 +7,6 @@ class CurrencyType extends Type {
 		parent::__construct($params, $entity);
 	}
 
-	public function getSQL() {
-		return $this->getName().' decimal(14,2) NOT NULL default 0.00';
-	}
-
 	public function getSQLValue($name = '') {
 		return floatval(preg_replace('/\s+/', '', preg_replace('/\,/', '.', $this->getValue($name))));
 	}

@@ -17,7 +17,7 @@ class CommonController extends Controller {
 		$nodes = $this->getManager('Fuga:Common:Page')->getPathNodes($node['id']);
 		$action = $this->get('router')->getParam('action');	
 		$params = $this->get('router')->getParam('params');
-		if ($node['name'] == 'catalog' && $action == 'index' && isset($params[0])) {
+		if ($node['name'] == 'catalog' && isset($params[0])) {
 			$nodes = array_merge($nodes, $this->getManager('Fuga:Common:Category')->getPathNodes($params[0]));
 		}	
 		

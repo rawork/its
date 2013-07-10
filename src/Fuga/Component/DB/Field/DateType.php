@@ -30,9 +30,6 @@ class DateType extends Type {
 	}
 
 	/*** implementation */
-	public function getSQL() {
-		return $this->getName().' date NOT NULL default \'0000-00-00\'';
-	}
 
 	public function getSQLValue($name = '') {
 		if (trim($this->getValue($name))) {

@@ -1,4 +1,4 @@
-# robots.txt for http://auroraprof.ru
+# robots.txt for http://ivtexservis.ru
 
 User-agent: *
 Disallow: /admin/

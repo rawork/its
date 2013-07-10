@@ -15,10 +15,6 @@ class HtmlType extends Type {
 		return $this->getInput($this->getSearchValue(), $this->getSearchName(), true);
 	}
 
-	public function getSQL() {
-		return $this->getName().' text NULL';
-	}
-
 	public function getInput($value = '', $name = '', $search = false) {
 		if ($search){
 			return '<input type="text" id="'.($name ? $name : $this->getName()).'" name="'.($name ? $name : $this->getName()).'" style="width:100%" value="'.htmlspecialchars($value).'">';

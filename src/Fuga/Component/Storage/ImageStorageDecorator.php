@@ -80,8 +80,9 @@ class ImageStorageDecorator implements StorageInterface {
 			foreach ($sizes as $sizeData) {
 				$sizeParams = explode('|', $sizeData);
 				if (count($sizeParams) == 2) {
-					$path = $pathParts['dirname'].'/'.$pathParts['filename'].'_'.$sizeParams[0].'.'.$pathParts['extension'];
-					$files[] = array(
+					$path = $pathParts['dirname'].'/'.$pathParts['filename'].'_'.$sizeParams[0];
+					$path .= isset($pathParts['extension']) ? '.'.$pathParts['extension'] : '';
+					$files[$sizeParams[0]] = array(
 						'name' => $sizeParams[0], 
 						'path' => $path,
 						'size' => $this->size($path)

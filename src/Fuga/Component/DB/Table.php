@@ -17,7 +17,8 @@ class Table {
 			'html' => 'text', 'checkbox' => 'boolean', 'currency' => 'decimal', 'select' => 'integer',
 			'select_tree' => 'integer', 'select_list' => 'string', 'date' => 'date', 'datetime' => 'datetime',
 			'text' => 'text', 'password' => 'string', 'enum' => 'string', 'image' => 'string',
-			'string' => 'string', 'file' => 'string', 'number' => 'integer', 'template' => 'string'
+			'string' => 'string', 'file' => 'string', 'number' => 'integer', 'template' => 'string',
+			'gallery' => 'integer'
 	);
 
 	public function __construct($table) {
@@ -74,6 +75,7 @@ class Table {
 				$field['group_update'] = $field['group_update'] == 1;
 				$field['readonly'] = $field['readonly'] == 1;
 				$field['search'] = $field['search'] == 1;
+				$field['table_name'] = $this->dbName();
 				if (!empty($field['params'])) {
 					$params = explode(';', trim($field['params']));
 					foreach ($params as $param) {
@@ -109,6 +111,9 @@ class Table {
 	public function getFieldList() {
 		$ret = array('id');
 		foreach ($this->fields as $field) {
+			if (in_array($field['type'], array('listbox', 'gallery'))) {
+				continue;
+			}
 			$ret[] = $field['name'];
 		}
 		return $ret;
@@ -118,7 +123,7 @@ class Table {
 		$extraIds = array();
 		$values = array();
 		foreach ($this->fields as $field) {
-			if ($field['type'] == 'listbox') {
+			if (in_array($field['type'], array('listbox', 'gallery'))) {
 				continue;
 			}	
 			$fieldType = $this->createFieldType($field);
@@ -159,13 +164,11 @@ class Table {
 		$entity = $this->getItem($entityId);
 		$values = array();
 		foreach ($this->fields as $field) {
-			if ($field['type'] == 'listbox') {
+			if (in_array($field['type'], array('listbox', 'gallery'))) {
 				continue;
 			}
 			$fieldType = $this->createFieldType($field, $entity);
-			if ($this->dbName() == 'user_user' && $field['name'] == 'login' && $entityId == 1) {
-				$values[$fieldType->getName()] = 'admin';
-			} elseif ($field['name'] == 'updated') {
+			if ($field['name'] == 'updated') {
 				$values[$fieldType->getName()] = date('Y-m-d H:i:s');
 			} elseif (empty($field['readonly'])) {
 				$values[$fieldType->getName()] = $fieldType->getSQLValue();

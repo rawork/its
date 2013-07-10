@@ -216,7 +216,8 @@ ul.bottom-menu li:last-child a {
 }
 
 .news-lenta p.date {
-	color: #838383
+	color: #838383;
+	font-size: 11px;
 }
 
 .news-lenta p.title {
@@ -480,4 +481,13 @@ legend {
 .map_links a { width: auto; display: block; margin: 0 0 3px 0; white-space: nowrap; }
 .map_sub_links {     margin: 0 0 10px 20px; }
 .map_sub_links a { margin: 0 0 7px 0; }
+
+.news-date {
+	font-size: 11px;
+	color: #999;
+}
+
+.news-text {
+	padding-bottom: 10px;
+}
 
