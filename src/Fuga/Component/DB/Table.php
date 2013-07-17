@@ -523,9 +523,9 @@ class Table {
 							foreach ($sizes as $sizeData) {
 								$sizeParams = explode('|', $sizeData);
 								if (count($sizeParams) == 2 && is_array($i = @GetImageSize($PRJ_DIR.$pathParts['dirname'].'/'.$pathParts['filename'].'_'.$sizeParams[0].'.'.$pathParts['extension']))) {
-									$ret[$sizeParams[0].'_'.$fieldType->getName()] = $pathParts['dirname'].'/'.$pathParts['filename'].'_'.$sizeParams[0].'.'.$pathParts['extension'];
-									$ret[$sizeParams[0].'_'.$fieldType->getName().'_width'] = $i[0];
-									$ret[$sizeParams[0].'_'.$fieldType->getName().'_height'] = $i[1];
+									$ret[$fieldType->getName().'_'.$sizeParams[0]] = $pathParts['dirname'].'/'.$pathParts['filename'].'_'.$sizeParams[0].'.'.$pathParts['extension'];
+									$ret[$fieldType->getName().'_'.$sizeParams[0].'_width'] = $i[0];
+									$ret[$fieldType->getName().'_'.$sizeParams[0].'_height'] = $i[1];
 								}
 							}
 						}

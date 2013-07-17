@@ -13,7 +13,7 @@ class CatalogController extends PublicController {
 	public function indexAction($params) {
 		$is_cat = false;
 		$is_product = false;
-		$item = null;
+		$node = null;
 		$cats = null;
 		$products = null;
 		if (isset($params[0])) {

@@ -152,7 +152,7 @@ class ImageStorageDecorator implements StorageInterface {
 								imagepng($thumb);
 							}
 							$data = ob_get_clean();
-							$fh = fopen($this->realPath($pathParts['dirname'].'/'.$pathParts['filename'].'_'.$sizeParams[0].'.'.$pathParts['extension']), 'w');
+							$fh = fopen($this->realPath($pathParts['dirname'].DIRECTORY_SEPARATOR.$pathParts['filename'].'_'.$sizeParams[0].'.'.$pathParts['extension']), 'w');
 							fwrite ($fh, $data);
 							fclose ($fh);
 							imagedestroy($thumb);

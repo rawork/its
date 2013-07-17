@@ -491,3 +491,12 @@ legend {
 	padding-bottom: 10px;
 }
 
+.analog {
+	font-size: 16px;
+	padding-top: 20px;
+	color: #ee0000; 
+}
+
+.analog span {
+	color: #191919;
+}

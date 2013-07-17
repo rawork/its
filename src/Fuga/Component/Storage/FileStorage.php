@@ -15,16 +15,19 @@ class FileStorage implements StorageInterface {
 	}
 	
 	public function save($filename, $sourcePath) {
-		$filename = $this->unique($filename);
-		$createFileName = $this->createPath().$filename;
-		move_uploaded_file($sourcePath, $this->realPath($createFileName));
+		$createFileName = $this->unique($this->createPath().$filename);
+		if (is_uploaded_file($sourcePath)) {
+			move_uploaded_file($sourcePath, $this->realPath($createFileName));
+		} else {
+			$this->copy($createFileName, $sourcePath);
+		}
 		chmod($this->realPath($createFileName), 0666);
 		return $this->path($createFileName);
 	}
 	
 	// TODO копирование файла какое то убогое
 	public function copy($filename, $sourcePath) {
-		@copy($sourcePath, $this->realPath($filename));
+		copy($sourcePath, $this->realPath($filename));
 		return $this->path($filename);
 	}
 	
@@ -67,35 +70,42 @@ class FileStorage implements StorageInterface {
 		return $bytes;
 	}
 
-	private function unique($filename, $counter = 0) {
+	private function unique($filename, $counter = null) {
 		if (!$counter) {
 			$filename = strtolower($this->translit($filename));
 			if (!$filename) {
 				throw new Exception('Пустое имя сохраняемого файла');
 			}
 		}	
-		$nameParts = explode('.', $filename);
-		$nameParts[0] .= ($counter ? '_'.$counter : '');
-		$filename = implode('.', $nameParts);
+		$pathParts = pathinfo($filename);
+		$pathParts['filename'] .= $counter ? '_'.$counter : '';
+		$filename = $pathParts['dirname'].DIRECTORY_SEPARATOR.$pathParts['filename'].(isset($pathParts['extension']) ? '.'.$pathParts['extension'] : '');
 
 		return $this->exists($filename) ? $this->unique($filename, ++$counter) : $filename;
 	}
 	
-	private function translit($s) {
+	private function translit($str) {
 		// Сначала заменяем "односимвольные" фонемы.
-		$s=strtr($s,"абвгдеёзийклмнопрстуфхъыэ_ ", "abvgdeeziyklmnoprstufh_iei_");
-		$s=strtr($s,"АБВГДЕЁЗИЙКЛМНОПРСТУФХЪЫЭ_ ", "ABVGDEEZIYKLMNOPRSTUFH_IEI_");
-		// Затем - "многосимвольные".
-		$s=strtr($s, 
-			array(
-				"ж"=>"zh", "ц"=>"ts", "ч"=>"ch", "ш"=>"sh", 
-				"щ"=>"shch","ь"=>"", "ю"=>"yu", "я"=>"ya",
-				"Ж"=>"ZH", "Ц"=>"TS", "Ч"=>"CH", "Ш"=>"SH", 
-				"Щ"=>"SHCH","Ь"=>"", "Ю"=>"YU", "Я"=>"YA",
-				"ї"=>"i", "Ї"=>"Yi", "є"=>"ie", "Є"=>"Ye"
-			)
-		);
-		return $s;
+		$cirilica = array(
+			"а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", 
+			"й", "к", "л", "м", "н", "о", "п", "р", "с", "т", 
+			"у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", 
+			"э", "ю", "я", "_", " ", ",", 
+			"А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", 
+			"Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", 
+			"У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", 'Ь', 
+			"Э", "Ю", "Я");
+		$latinica = array(
+			"a", "b", "v", "g", "d", "e", "e", "zh", "z", "i", 
+			"y", "k", "l", "m", "n", "o", "p", "r", "s", "t", 
+			"u", "f", "h", "ts", "ch", "sh", "shch", "-", "i", "-", 
+			"e", "yu", "ya", "-", "-", "", 
+			"A", "B", "V", "G", "D", "E", "E", "ZH", "Z", "I", 
+			"Y", "K", "L", "M", "N", "O", "P", "R", "S", "T", 
+			"U", "F", "H", "TS", "CH", "SH", "SHCH", "-", "I", "-",
+			"E", "YU", "YA");
+		
+		return str_replace($cirilica, $latinica, $str);
 	}
 }
 

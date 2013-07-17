@@ -1,7 +1,8 @@
 <a href="#price" class="pull-right btn btn-large btn-primary">Запрос стоимости</a>
 <div id="catImg">
-	<a href="{$node.image_big}"><img src="{$node.image_medium}" width="380"></a>
+	<a href="{$node.foto_big}"><img src="{$node.foto_medium}" width="380"></a>
 </div>
+{if $node.analog}<div class="analog"><span>Аналог станка:</span> {$node.analog}</div>{/if}
 <div>{$node.preview}</div>
 <div><br>{if $node.description}{$node.description}{else}<p>Информация по этому виду товаров в настоящий момент готовится.</p>{/if}</div>
 <div id="priceform" class="hidden alert alert-success"></div>
