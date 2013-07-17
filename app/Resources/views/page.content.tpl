@@ -85,6 +85,7 @@
 				<h1><span>{$h1}</span></h1>
 				<div class="inner-content">{eval var=$mainbody}</div>
 				<br>
+				<div class="clearfix"></div>
 				{raMethod path=Fuga:Public:Common:block args='["name":"seo_text"]'}
 				<div class="clearfix"></div>
 			</div>
@@ -133,6 +134,10 @@
 	</div>
 	<script type="text/javascript" src="/bundles/public/js/jquery.js"></script>
 	<script type="text/javascript" src="/bundles/bootstrap_new/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/bundles/galleria/galleria-1.2.9.min.js"></script>
 	<script type="text/javascript" src="/bundles/public/js/functions.js"></script>
+	<script type="text/javascript">
+		{$javascript}
+    </script>
 </body>
 </html>

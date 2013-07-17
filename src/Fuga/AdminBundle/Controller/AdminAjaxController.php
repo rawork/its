@@ -333,14 +333,17 @@ class AdminAjaxController extends Controller {
 	}
 	
 	
-	function delFile($id) {
-		$sql = "SELECT file FROM system_files WHERE id= :id ";
+	function gallerydelete($id) {
+		$sql = "SELECT * FROM system_files WHERE id= :id ";
 		$stmt = $this->get('connection1')->prepare($sql);
 		$stmt->bindValue('id', $id);
 		$stmt->execute();
 		$file = $stmt->fetch();
 		if ($file) {
-			$this->get('filestorage')->remove($file['file']);
+			$field = $this->get('container')->getTable($file['table_name'])->fields[$file['field_name']];
+			list($key, $sizes) = explode(':', $field['params']);
+			$this->get('imagestorage')->setOptions(array('sizes' => 'default|50x50,'.$sizes));
+			$this->get('imagestorage')->remove($file['file']);
 			$this->get('connection1')->delete('system_files', array('id' => $id));
 			return json_encode(array('status' => 'ok'));
 		} else {
@@ -348,109 +351,7 @@ class AdminAjaxController extends Controller {
 		}
 	}
 	
-	function updateFileList($table, $id) {
-		$sql = "SELECT * FROM system_files WHERE table_name= :table AND entity_id= :id ";
-		$stmt = $this->get('connection1')->prepare($sql);
-		$stmt->bindValue('table', $table);
-		$stmt->bindValue('id', $id);
-		$stmt->execute();
-		$items = $stmt->fetchAll();
-		$ret = '';
-		$ret .= '<table class="table table-condensed">';
-		$ret .= '<thead><tr>';
-		$ret .= '<th width="85%">Файл</th>';
-		$ret .= '<th width="10%">Размер</th>';
-		$ret .= '<th><i class="icon-align-justify"></i></th>';
-		$ret .= '</tr></thead>';
-		foreach ($items as $item) {
-			$ret .= '<tr id="file_'.$item['id'].'">';
-			$ret .= '<td><a href="'.$item['file'].'">'.$item['name'].'</a></td>';
-			$ret .= '<td>'.$item['filesize'].' байт</td>';
-			$ret .= '<td><a href="#" class="btn btn-small btn-danger" onClick="delFile(\''.$item['id'].'\',\''.$item['name'].'\',\''.$table.'\',\''.$id.'\'); return false"><i class="icon-trash icon-white"></i></a></td>'."\n";
-			$ret .= '</tr>';	
-		}
-		$ret .= '</table>';
-		return json_encode(array('content' => $ret));
-	}
-	
-	function getPriceList($productId) {
-		$content = '<table class="table table-condensed">
-<thead><tr>
-<th width="30%">Размер</th>
-<th width="30%">Цвет</th>
-<th width="30%">Цена</th>
-<th width="5%">Порядок</th>
-<th width="1%">Акт</th>
-<th><i class="icon-align-justify"></i></th>
-</tr></thead>';
-				
-		$sql = "SELECT p.id, s.name as size_id_name, c.name as color_id_name, p.price, p.sort, p.publish 
-			FROM catalog_price p JOIN catalog_size s ON p.size_id=s.id 
-			JOIN catalog_color c ON p.color_id=c.id 
-			WHERE p.product_id= :id ORDER BY p.price";
-		$stmt = $this->get('connection1')->prepare($sql);
-		$stmt->bindValue('id', $productId);
-		$stmt->execute();
-		$items = $stmt->fetchAll();
-		foreach ($items as $item) {
-			$content .= '<tr id="price_'.$item['id'].'">';
-			$content .= '<td>'.$item['size_id_name'].'</td>';
-			$content .= '<td>'.$item['color_id_name'].'</td>';
-			$content .= '<td><input type="text" class="input-mini right" name="price_'.$item['id'].'" value="'.$item['price'].'" /></td>';
-			$content .= '<td><input type="text" class="input-mini" name="sort_'.$item['id'].'" value="'.$item['sort'].'" /></td>';
-			$content .= '<td><input type="checkbox" name="publish_'.$item['id'].'" value="on"'.($item['publish'] ? ' checked' : '').'></td>';
-			$content .= '<td><a href="javascript:void(0)" class="btn btn-small btn-danger" onClick="delPrice('.$item['id'].')"><i class="icon-trash icon-white"></i></a></td>'."\n";
-			$content .= '</tr>';	
-		}
-		$content .= '</table>';
-		return $content;
-	}
-	
-	function addPrice($formdata) {
-		parse_str($formdata);
-		$this->get('connection1')->insert('catalog_price', array(
-			'product_id' => $product_id,
-			'size_id' => $size_id,
-			'color_id' => $color_id,
-			'price' => $price,
-			'sort' => $sort,
-			'publish' => isset($publish) ? 1 : 0,
-			'created' => date('Y-m-d H:i:s')
-		));
-
-		return json_encode(array('content' => $this->getPriceList($product_id)));
-	}
-	
-	function delPrice($priceId) {
-		$this->get('connection1')->delete('catalog_price', array('id' => $priceId));
-		
-		return json_encode(array('status' => 'ok'));
-	}
-	
-	function updatePrices($formdata){
-		parse_str($formdata);
-		$sql = "SELECT p.id, p.product_id FROM catalog_price p JOIN catalog_size s ON p.size_id=s.id JOIN catalog_color c ON p.color_id=c.id WHERE p.product_id= :id ORDER BY p.price";
-		$stmt = $this->get('connection1')->prepare($sql);
-		$stmt->bindValue('id', $product_id);
-		$stmt->execute();
-		$items = $stmt->fetchAll();
-		foreach ($items as $item) {
-			$priceName = 'price_'.$item['id'];
-			$sortName = 'sort_'.$item['id'];
-			$publishName = 'publish_'.$item['id'];
-			$price = isset($$priceName) ? $$priceName : 0;
-			$sort = isset($$sortName) ? $$sortName : 0;
-			$publish = isset($$publishName) ? 1 : 0;
-			$this->get('connection1')->update('catalog_price', 
-				array('price' => $price, 'sort' => $sort, 'publish' => $publish),
-				array('id' => $item['id'])
-			);
-		}
-		
-		return json_encode(array('content' => $this->getPriceList($product_id)));
-	}
-	
-	function updateRpp($tableName, $rpp = 25) {
+	public function updateRpp($tableName, $rpp = 25) {
 		$_SESSION[$tableName.'_rpp'] = $rpp;
 			
 		return json_encode(array('status' => $_SESSION[$tableName.'_rpp']));

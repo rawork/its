@@ -108,6 +108,10 @@ class PageController extends Controller {
 					'entity_id' => $this->get('util')->_postVar('entity_id', true, 0),
 					'created' => date('Y-m-d H:i:s')
 				));
+				$sizes = $this->get('util')->_postVar('sizes');
+				if ($sizes) {
+					$this->get('imagestorage')->afterSave($file, array('sizes' => $sizes));
+				}
 			}
 		}
 

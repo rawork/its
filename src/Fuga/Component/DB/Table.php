@@ -164,12 +164,14 @@ class Table {
 		$entity = $this->getItem($entityId);
 		$values = array();
 		foreach ($this->fields as $field) {
-			if (in_array($field['type'], array('listbox', 'gallery'))) {
+			if (in_array($field['type'], array('listbox'))) {
 				continue;
 			}
 			$fieldType = $this->createFieldType($field, $entity);
 			if ($field['name'] == 'updated') {
 				$values[$fieldType->getName()] = date('Y-m-d H:i:s');
+			} elseif ($field['type'] == 'gallery') {
+				$fieldType->getSQLValue();
 			} elseif (empty($field['readonly'])) {
 				$values[$fieldType->getName()] = $fieldType->getSQLValue();
 			}

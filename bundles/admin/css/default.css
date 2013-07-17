@@ -102,3 +102,16 @@ div#waiting * {
 	padding: 8px 15px;
 }
 
+.admin-field-gallery div {
+	font-size: 18px;
+	padding-right: 5px;
+	height: 70px;
+	float: left;
+}
+
+.admin-field-gallery a.delete {
+	color: #7FE1FF;
+	display: block;
+	margin-top: -16px;
+}
+

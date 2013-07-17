@@ -493,10 +493,21 @@ legend {
 
 .analog {
 	font-size: 16px;
-	padding-top: 20px;
+	padding-top: 10px;
 	color: #ee0000; 
 }
 
 .analog span {
 	color: #191919;
 }
+
+.producer {
+	font-size: 16px;
+	padding-top: 20px;
+}
+
+.producer span {
+	color: #191919;
+}
+
+#galleria{height:360px}

@@ -351,50 +351,13 @@ function clearCache() {
 	}, "json");
 }
 
-function delFile(fileId) {
-	$('#file_'+fileId).css('display', 'none');
-	$.post("/adminajax/", {method: 'delFile', fileId: fileId},
+function gallerydelete(id) {
+	$('#file_'+id).remove();
+	$.post("/adminajax/", {method: 'gallerydelete', id: id},
 	function(data){
 		if (data.alertText) {
 			window.location.reload();
-//			alert(data.alertText);
 		}
-	}, "json");
-}
-
-function updateFileList(tableName, recordId) {
-	$.post("/adminajax/", {method: 'updateFileList', tableName: tableName, recordId: recordId},
-	function(data){
-		$('#filelist').html(data.content);
-	}, "json");
-}
-
-function addPrice(formId) {
-	fields = $('#frm'+formId).serialize();
-	showDiv('waiting', 0, -100);
-	$.post("/adminajax/", {method: 'addPrice', formdata: fields},
-	function(data){
-		$('#pricelist').html(data.content);
-		hideDiv('waiting');
-	}, "json");
-}
-
-function delPrice(priceId) {
-	showDiv('waiting', 0, -100);
-	$.post("/adminajax/", {method: 'delPrice', priceId: priceId},
-	function(data){
-		$('#price_'+priceId).remove();
-		hideDiv('waiting');
-	}, "json");
-}
-
-function updatePrices(formId) {
-	fields = $('#frm'+formId).serialize();
-	showDiv('waiting', 0, -100);
-	$.post("/adminajax/", {method: 'updatePrices', formdata: fields},
-	function(data){
-		$('#pricelist').html(data.content);
-		hideDiv('waiting');
 	}, "json");
 }
 
@@ -407,7 +370,11 @@ function updateRpp(sel, tableName) {
 	}, "json");
 }
 
-/* end ajax */	
+/* end ajax */
+
+function addfilefield(el) {
+	$('#'+el+'_input').append('<br><input name="'+el+'[]" type="file">');
+}
 
 /* Calendar setup*/
 

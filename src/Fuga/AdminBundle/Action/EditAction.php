@@ -52,7 +52,7 @@ class EditAction extends Action {
 				$ret .= '</table>
 <input type="button" class="btn btn-success" onClick="preSubmit(\'frmInsert\', 0)" value="Сохранить">
 <input type="button" class="btn" onClick="preSubmit(\'frmInsert\', 1)" value="Применить">
-<input type="button" class="btn" onClick="window.location = \''.$this->fullRef.'\'" value="Отменить"></form>';
+<input type="button" class="btn btn-error" onClick="window.location = \''.$this->fullRef.'\'" value="Отменить"></form>';
 			}
 		}
 		return $ret;

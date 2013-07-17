@@ -50,7 +50,7 @@ class AddAction extends Action {
 			$content .= '</table>
 <input type="button" class="btn btn-success" onClick="preSubmit(\'frmInsert\', 0)" value="Сохранить">
 <input type="button" class="btn" onClick="preSubmit(\'frmInsert\', 1)" value="Применить">
-<a class="btn btn-error" href="'.$this->fullRef.'" value="Отменить"></form>';
+<a class="btn btn-error" href="'.$this->fullRef.'">Отменить</a></form>';
 			return $content;
 		}
 	}

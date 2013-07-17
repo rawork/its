@@ -48,8 +48,28 @@ class CatalogController extends PublicController {
 		}
 		$this->get('container')->setVar('title', $node['name']);
 		$this->get('container')->setVar('h1', $node['name']);
+		$sql = "SELECT * FROM system_files WHERE table_name= :table_name AND field_name= :field_name AND entity_id= :entity_id ORDER by created";
+		$stmt = $this->get('connection1')->prepare($sql);
+		$stmt->bindValue('table_name', 'catalog_product');
+		$stmt->bindValue('field_name', 'gallery');
+		$stmt->bindValue('entity_id', $node['id']);
+		$stmt->execute();
+		$gallery = $stmt->fetchAll();
+		$field = $this->get('container')->getTable('catalog_product')->fields['gallery'];
+		list($key, $sizes) = explode(':', $field['params']);
+		$this->get('imagestorage')->setOptions(array('sizes' => $sizes));
+		foreach ($gallery as &$file) {
+			$add_files = $this->get('imagestorage')->additionalFiles($file['file']);
+			foreach ($add_files as $afile) {
+				$file['foto_'.$afile['name']] = $afile['path'];
+			}
+		}
+		if ($gallery) {
+			$this->get('container')->setVar('javascript', "Galleria.loadTheme('/bundles/galleria/themes/its/galleria.its.js');
+    Galleria.run('#galleria');");
+		}
 		
-		return $this->render('catalog/product.tpl', compact('node'));
+		return $this->render('catalog/product.tpl', compact('node', 'gallery'));
 	}
 	
 	public function blocksAction() {
