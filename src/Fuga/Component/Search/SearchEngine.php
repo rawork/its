@@ -13,44 +13,29 @@ class SearchEngine {
 		$this->options = array(
 			'catalog' => array(
 				'catalog_product' => array(
-					'fields' => array('name', 'preview', 'description', 'tags'),
-					'link' => '/%s/stuff.%s.htm',
+					'fields' => array('name', 'preview', 'description', 'analog'),
+					'link' => '/%s/product/%s',
 					'where' => "publish=1",
 					'title' => 'name'
 				),
 				'catalog_category' => array(
-					'fields' => array('title', 'name', 'description'),
-					'link' => '/%s/index.%s.htm',
-					'where' => "publish=1",
-					'title' => 'title'
-				),
-				'catalog_producer' => array(
-					'fields' => array('name'),
-					'link' => '/%s/brand.%s.htm',
+					'fields' => array('name', 'description'),
+					'link' => '/%s/%s',
 					'where' => "publish=1",
 					'title' => 'name'
 				),
 			),
-			'article' => array(
-				'article_article' => array(
-					'fields' => array('name', 'preview', 'body', 'tags', 'termin'),
-					'link' => '/%s/read.%s.htm',
-					'where' => "publish=1",
-					'title' => 'name'
-
-				)
-			),
-			'news' => array(
-				'news_news' => array(
-					'fields' => array('name', 'preview', 'body'),
-					'link' => '/%s/read.%s.htm',
-					'where' => "publish=1",
-					'title' => 'name'
-				)
-			)
+//			'news' => array(
+//				'news_news' => array(
+//					'fields' => array('name', 'preview', 'body'),
+//					'link' => '/%s/read.%s.htm',
+//					'where' => "publish=1",
+//					'title' => 'name'
+//				)
+//			)
 		);
 		$this->pages = array(
-			'fields' => array('title', 'name', 'body'),
+			'fields' => array('title', 'name', 'content'),
 			'link' => '/%s.htm',
 			'where' => "publish=1",
 			'title' => 'title'
@@ -58,20 +43,19 @@ class SearchEngine {
 	}
 	
 	public function createCriteria($words, $fields) {
-		$query = '';
+		$query = array();
 		foreach ($fields as $field) {
 			if (count($words) > 1) {
-				$query0 = '';
+				$query0 = array();
 				foreach ($words as $word) {
-					$query0 .=  ($query0 ? ' AND ' : '').'('.$field." LIKE '%".$word."%')";
+					$query0[] =  '('.$field." LIKE '%".$word."%')";
 				}
-				$query .=  ($query ? ' OR ' : '').($query0 ? '('.$query0.')' : '');
+				$query[] =  $query0 ? '('.implode(' AND ', $query0).')' : '';
 			} elseif (count($words)) {
-				$word = array_shift($words);
-				$query .=  ($query ? ' OR ' : '').$field." LIKE '%".$word."%'";
-			}
+				$query[] =  $field." LIKE '%".$words[0]."%'";
+			}	
 		}
-		return $query ? '('.$query.')' : '';
+		return $query ? '('.implode(' OR ', $query).')' : '';
 	}
 
 	public function getSearchResults($words, $table, $options) {
