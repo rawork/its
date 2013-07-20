@@ -42,7 +42,25 @@
 						<ul class="menu">
 						<li class="leaf"><a href="/" class="active">Главная</a></li>
 						{foreach item=node from=$links}
-						<li class="{$node.class}"><a href="{$node.ref}">{$node.title}</a></li>
+						{if $node.children}
+							{if $curnode.id == $node.id || $curnode.parent_id == $node.id}
+							{assign var=nodeclass value=expanded}
+							{assign var=showchildren value=1}
+							{else}
+							{assign var=nodeclass value=collapsed}
+							{/if}
+						{else}
+						{assign var=nodeclass value=leaf}
+						{/if}
+						<li class="{$nodeclass}"><a href="{$node.ref}">{$node.title}</a>
+						{if $showchildren}
+							<ul class="menu">
+								{foreach item=subnode from=$node.children}
+								<li class="leaf"><a href="{$subnode.ref}">{$subnode.title}</a>	
+								{/foreach}
+							</ul>
+						{/if}
+						</li>
 						{/foreach}
 						</ul>
 					</div>
@@ -50,7 +68,7 @@
 				<div class="sideblock">
 					<div class="title">Выполнение заказов</div>
 					<div class="content">
-						<p><a href="/publicatshow">Просмотреть ход выполнения</a></p>
+						<p><a href="{raURL node=publicatshow}">Просмотреть ход выполнения</a></p>
 					</div>
 				</div>
 				<div class="sideblock">
@@ -104,6 +122,7 @@
 				<div class="counters">
 					{include file='counters.tpl'}
 				</div>
+				<div class="counters">{raMethod path=Fuga:Public:Common:block args='["name":"counters"]'}</div>
 			</div>
 		</div>
 	</div>

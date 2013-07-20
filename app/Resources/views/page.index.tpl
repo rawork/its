@@ -136,6 +136,7 @@
 				<div class="counters">
 					{include file='counters.tpl'}
 				</div>
+				<div class="counters">{raMethod path=Fuga:Public:Common:block args='["name":"counters"]'}</div>
 			</div>
 		</div>
 	</div>

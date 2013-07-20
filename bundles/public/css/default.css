@@ -128,12 +128,24 @@ div.container {
 
 ul.menu {
 	margin: 0;
-	padding: 0;
+	padding: 0 0 0 10px;
 	list-style: none;
+}
+
+ul.menu li {
+	padding-left: 10px;
 }
 
 ul.menu li a {
 	font-weight: bold;
+}
+
+ul.menu ul li {
+	font-weight: normal;
+}
+
+ul.menu li.expanded {
+	background: url(../img/menu-expand.gif) no-repeat 0 5px;
 }
 
 .maincontent {
