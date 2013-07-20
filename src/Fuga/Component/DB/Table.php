@@ -201,9 +201,12 @@ class Table {
 			$values = array();
 			$entityId = $entity['id'];
 			foreach ($this->fields as $field) {
-				if ($field['type'] != 'listbox') {
+				if ($field['type'] == 'gallery') {
 					$fieldType = $this->createFieldType($field, $entity);
-					if ($field['type'] == 'checkbox') {
+					$fieldType->getSQLValue();
+				} elseif ($field['type'] != 'listbox') {
+					$fieldType = $this->createFieldType($field, $entity);
+					if ('checkbox' == $field['type'] && true == $field['group_update']) {
 						$values[$fieldType->getName()] = $this->get('util')->_postVar($fieldType->getName().$entity['id']);	
 					}
 					if ($this->get('util')->_postVar($fieldType->getName().$entity['id']) 
@@ -211,6 +214,7 @@ class Table {
 						$values[$fieldType->getName()] = $fieldType->getGroupSQLValue(); 
 					}	
 				}
+				
 				if (($field['type'] == 'select' || $field['type'] == 'select_tree')
 					&& isset($field['link_type']) && $field['link_type'] == 'many'
 					) {

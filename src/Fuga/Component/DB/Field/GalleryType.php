@@ -34,7 +34,10 @@ class GalleryType extends ImageType {
 //		var_dump($_FILES);
 //		exit;
 		if (!empty($_FILES[$inputName]) && !empty($_FILES[$inputName]['name'])) {
-			foreach ($_FILES[$inputName]["name"] as $i => $file) {	
+			foreach ($_FILES[$inputName]["name"] as $i => $file) {
+				if (empty($_FILES[$inputName]['name'][$i])) {
+					continue;
+				}
 				$filename = $this->get('imagestorage')->save($_FILES[$inputName]['name'][$i], $_FILES[$inputName]['tmp_name'][$i]);
 				$name = $_FILES[$inputName]['name'][$i];
 				$filesize = @filesize($this->get('imagestorage')->realPath($filename));
