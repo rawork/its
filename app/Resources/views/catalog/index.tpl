@@ -7,7 +7,7 @@
 	</ul>
 	{/if}
 	{if $products}
-	<ul{if $node.is_list != 1} class="catalog-contents"{/if}>
+	<ul{if $node.is_list != 1} class="catalog-contents2"{/if}>
 	{foreach from=$products item=item}
 	<li><a href="{raURL node=catalog method=product prms=$item.id}">{if $node.is_list != 1}<img src="{if $item.foto_small}{$item.foto_small}{else}/bundles/public/img/no_photo.gif{/if}" width="128" alt="{$item.name}" title="{$item.name}">{/if}{$item.name}</a></li>
 	{/foreach} 
