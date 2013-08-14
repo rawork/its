@@ -88,6 +88,14 @@ class CatalogController extends PublicController {
 		return $this->render('catalog/leaders.tpl', compact('items'));
 	}
 	
+	public function repairAction() {
+		$items = $this->get('container')->getItems('catalog_product', 'publish=1 AND category_id=639');
+		shuffle($items);
+		$items = array_slice($items, 0, 4);
+		
+		return $this->render('catalog/repair.tpl', compact('items'));
+	}
+	
 	public function offerAction() {
 		$item = $this->get('container')->getItem('catalog_product', 'publish=1 AND is_offer=1');
 		

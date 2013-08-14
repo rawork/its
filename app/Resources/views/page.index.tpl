@@ -99,6 +99,7 @@
 				{raMethod path=Fuga:Public:Common:block args='["name":"welcome"]'}
 				
 				{raMethod path=Fuga:Public:Catalog:leaders}
+				{raMethod path=Fuga:Public:Catalog:repair}
 				{raMethod path=Fuga:Public:Catalog:blocks}
 				<br>
 				{$mainbody}

@@ -1,9 +1,9 @@
+{if $node.analog}<div class="analog">Аналог станка {$node.analog}</div>{/if}
 <a href="#price" class="pull-right btn btn-large btn-primary">Запрос стоимости</a>
 <div id="catImg">
 	<a href="{$node.foto_big}"><img src="{$node.foto_medium}" width="380"></a>
 </div>
 {if $node.producer_id_name}<div class="producer"><span>Производитель:</span> {$node.producer_id_name}</div>{/if}
-{if $node.analog}<div class="analog"><span>Аналог станка:</span> {$node.analog}</div>{/if}
 <div>{$node.preview}</div>
 <div><br>{if $node.description}{$node.description}{elseif !$gallery}<p>Информация по этому виду товаров в настоящий момент готовится.</p>{/if}</div>
 {if $gallery}
