@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Восстановление пароля - {$prj_name}.{$prj_zone}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="/bundles/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/bundles/admin/css/login.css" rel="stylesheet">
 	<script src="/bundles/public/js/jquery.js"></script>

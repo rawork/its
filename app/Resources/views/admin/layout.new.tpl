@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Управление сайтом - {$prj_name}.{$prj_zone}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="/bundles/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="{$theme_ref}/css/default.css" rel="stylesheet">
 	<link href="{$theme_ref}/css/colorpicker.css" type="text/css" rel="stylesheet">
