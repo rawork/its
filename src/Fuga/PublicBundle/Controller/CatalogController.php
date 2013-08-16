@@ -89,9 +89,7 @@ class CatalogController extends PublicController {
 	}
 	
 	public function repairAction() {
-		$items = $this->get('container')->getItems('catalog_product', 'publish=1 AND category_id=639');
-		shuffle($items);
-		$items = array_slice($items, 0, 4);
+		$items = $this->get('container')->getItems('catalog_category', 'publish=1 AND parent_id=639');
 		
 		return $this->render('catalog/repair.tpl', compact('items'));
 	}
