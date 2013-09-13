@@ -60,6 +60,7 @@ class PublicatController extends PublicController {
 	
 	public function updateAction() {
 		global $PRJ_DIR;
+		return 'ready';
 		$content = '';
 		$basepath = '/upload/publicat/';
 		$basedir = $PRJ_DIR.'/upload/publicat/';
