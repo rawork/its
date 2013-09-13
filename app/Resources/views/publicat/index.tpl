@@ -19,7 +19,7 @@
 	{assign var=j value=$j+1}
 	{assign var=j_prev value=$j-1}
 	{assign var=j_next value=$j+1}
-	<a id="aname{$item.id}_{$j}" name="aname{$item.id}_{$j}" onclick="openContestWindow('{$photo.foto1}', '{$item.title_for_java}', '{$photo.title}', '{$photo.comment}', '{$j_prev}', '{$j_next}', '{$item.id}', '{$smarty.foreach.photos.index}');return false;" href="javascript:void(0);"><img src="/upload/publicat/{$photo.foto1}.jpg" alt="{$photo.title}" title="{$photo.title}" /></a>
+	<a id="aname{$item.id}_{$j}" name="aname{$item.id}_{$j}" onclick="openContestWindow('{$photo.foto1_big}', '{$item.title_for_java}', '{$photo.title}', '{$photo.comment}', '{$j_prev}', '{$j_next}', '{$item.id}', '{$smarty.foreach.photos.index}');return false;" href="javascript:void(0);"><img src="{$photo.foto1_small}" alt="{$photo.title}" title="{$photo.title}" /></a>
 	{else}
 	<a id="aname{$item.id}_{$photo.id}_1" name="aname{$item.id}_{$photo.id}_1" href="javascript:void(0);"></a>
 	{/if}
@@ -28,7 +28,7 @@
 	{assign var=j value=$j+1}
 	{assign var=j_prev value=$j-1}
 	{assign var=j_next value=$j+1}
-	<a id="aname{$item.id}_{$j}" name="aname{$item.id}_{$j}" onclick="openContestWindow('{$photo.foto2}', '{$item.title_for_java}', '{$photo.title2}', '{$photo.comment2}', '{$j_prev}', '{$j_next}', '{$item.id}', '{$smarty.foreach.photos.index}');return false;" href="javascript:void(0);"><img src="/upload/publicat/{$photo.foto2}.jpg" alt="{$photo.title2}" title="{$photo.title2}" /></a>
+	<a id="aname{$item.id}_{$j}" name="aname{$item.id}_{$j}" onclick="openContestWindow('{$photo.foto2_big}', '{$item.title_for_java}', '{$photo.title2}', '{$photo.comment2}', '{$j_prev}', '{$j_next}', '{$item.id}', '{$smarty.foreach.photos.index}');return false;" href="javascript:void(0);"><img src="{$photo.foto2_small}" alt="{$photo.title2}" title="{$photo.title2}" /></a>
 	{else}
 	<a id="aname{$item.id}_{$photo.id}_2" name="aname{$item.id}_{$photo.id}_2" href="javascript:void(0);"></a>
 	{/if}

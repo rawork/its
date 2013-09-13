@@ -58,5 +58,57 @@ class PublicatController extends PublicController {
 		return $this->render('publicat/index.tpl', compact('items', 'paginator', 'weeks', 'fotomas', 'j'));
 	}
 	
+	public function updateAction() {
+		global $PRJ_DIR;
+		$content = '';
+		$basepath = '/upload/publicat/';
+		$basedir = $PRJ_DIR.'/upload/publicat/';
+		$end_big = '_big.jpg';
+		$end_small = '_small.jpg';
+		$end_original = '.jpg';
+		$items = $this->get('container')->getItems('publicat_publicat', '1=1');
+		foreach ($items as $item) {
+			if (!empty($item['foto1'])) {
+				if (false === strpos($item['foto1'], 'upload')) {
+					$file_original = $basedir.$item['foto1'].$end_original;
+					$file_small = $basedir.$item['foto1'].$end_small;
+					$file_big = $basedir.$item['foto1'].$end_big;
+					if (!file_exists($file_small)) {
+						$content .= $file_small.'<br>';
+						rename($file_original,$file_small);
+					}
+					if (!file_exists($file_original)) {
+						$content .= $file_big.'<br>';
+						copy($file_big, $file_original);
+					}
+					$this->get('container')->updateItem('publicat_publicat',
+						array('foto1' => $basepath.$item['foto1'].$end_original),
+						array('id' => $item['id'])
+					);
+				}
+			}
+			if (!empty($item['foto2'])) {
+				if (false === strpos($item['foto2'], 'upload')) {
+					$file_original = $basedir.$item['foto2'].$end_original;
+					$file_small = $basedir.$item['foto2'].$end_small;
+					$file_big = $basedir.$item['foto2'].$end_big;
+					if (!file_exists($file_small)) {
+						$content .= $file_small.'<br>';
+						rename($file_original,$file_small);
+					}
+					if (!file_exists($file_original)) {
+						$content .= $file_big.'<br>';
+						copy($file_big, $file_original);
+					}
+					$this->get('container')->updateItem('publicat_publicat',
+						array('foto2' => $basepath.$item['foto2'].$end_original),
+						array('id' => $item['id'])
+					);
+				}
+			}
+		}
+		return $content.'ready';
+	}
+	
 }
 
