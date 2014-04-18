@@ -2,8 +2,8 @@
 
 $PRJ_DIR = $_SERVER['DOCUMENT_ROOT'];
 
-$RES_REF = '/img/files';
-$RES_DIR = $PRJ_DIR.'/img/files';
+$RES_REF = '/files';
+$RES_DIR = $PRJ_DIR.'/files';
 $UPLOAD_REF = '/upload';
 $UPLOAD_DIR = $PRJ_DIR.'/upload';
 $BACKUP_REF = '/app/backup';
