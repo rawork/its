@@ -50,15 +50,15 @@
 				<div class="sideblock">
 					<div class="title">Выполнение заказов</div>
 					<div class="content">
-						<p><a href="/publicatshow">Просмотреть ход выполнения</a></p>
+						<p><strong><a href="/publicatshow">Просмотреть ход выполнения</a></strong></p>
 					</div>
 				</div>
-				<div class="sideblock">
-					<div class="title">Прайс-лист</div>
-					<div class="content">
-						{raMethod path=Fuga:Public:Common:block args='["name":"pricelist"]'}
-					</div>
-				</div>
+				{*<div class="sideblock">*}
+					{*<div class="title">Прайс-лист</div>*}
+					{*<div class="content">*}
+						{*{raMethod path=Fuga:Public:Common:block args='["name":"pricelist"]'}*}
+					{*</div>*}
+				{*</div>*}
 				{raMethod path=Fuga:Public:Catalog:offer}
 				{raMethod path=Fuga:Public:Catalog:new}
 				<div class="sideblock">
