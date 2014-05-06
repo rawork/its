@@ -549,3 +549,114 @@ div.analog span {
 }
 
 #galleria{height:360px}
+
+.repair-title {
+    color: #de8a27;
+    font-size: 24px;
+    line-height: 40px;
+}
+
+.repair-container{
+    width: 600px;
+}
+
+.repair-text-container .texts {
+    position: relative;
+}
+
+.repair-text-container .text {
+    font-weight: bold;
+    line-height: 15px;
+    text-align: left;
+    position: absolute;
+}
+
+.repair-text-container .text1 {
+    left: 30px;
+    top: -385px;
+}
+
+.repair-text-container .text2 {
+    left: 200px;
+    top: -385px;
+}
+
+.repair-text-container .text3 {
+    text-align: right;
+    left: 370px;
+    top: -385px;
+}
+
+.repair-text-container .text4 {
+    left: 30px;
+    top: -123px;
+}
+
+.repair-text-container .text5 {
+    left: 190px;
+    top: -91px;
+}
+
+.repair-text-container .text6 {
+    text-align: right;
+    left: 320px;
+    top: -94px;
+}
+
+.repair-text-container .text7 {
+    text-align: right;
+    left: 433px;
+    top: -141px;
+}
+
+.configurator-link {
+    padding-left: 100px;
+    margin: 20px 0;
+}
+
+.configurator-container .feed a {
+    padding: 3px;
+    text-align: center;
+    width: 150px;
+    display: inline-block;
+    border: 2px solid #999;
+}
+
+.configurator-container .feed a.active {
+    border: 2px solid #de8a27;
+}
+
+.configurator-title {
+    color: #de8a27;
+    font-size: 24px;
+    line-height: 40px;
+}
+
+.feed-title  {
+    padding-top: 10px;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.detail .title  {
+    padding-top: 10px;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.detail .radio  {
+    line-height: 23px;
+    font-size: 14px;
+}
+
+.detail .checkbox  {
+    line-height: 23px;
+    font-size: 14px;
+}
+
+.update {
+    color: #de8a27;
+    font-size: 16px;
+    line-height: 30px;
+}
+

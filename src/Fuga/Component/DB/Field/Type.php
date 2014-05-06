@@ -80,7 +80,7 @@ class Type {
 		$name = $name ? $name : $this->getName();
 		$value = $value ? str_replace('"', '&quot;', $value) : str_replace('"', '&quot;', $this->dbValue);
 		$class = $class ? 'class="'.$class.'"' : '';
-		return '<input type="text" '.$class.' name="'.$name.'" value="'.$value.'" >';
+		return '<input class="input-block-level" type="text" '.$class.' name="'.$name.'" value="'.$value.'" >';
 	}
 
 	public function getSearchInput() {

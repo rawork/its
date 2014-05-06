@@ -109,3 +109,109 @@ function feedbackSend() {
 		$('textarea[name=feedback_comment]').val('');
 	}, "json");
 }
+
+var isDetailed = false;
+
+$(document).ready(function(){
+   $(document).on('click', '.feed a', function(e){
+       e.preventDefault();
+       if (isDetailed){
+           return;
+       }
+       $('#send').attr('disabled', true);
+       $('.detail').toggleClass('hidden');
+       $('.update').toggleClass('hidden');
+       isDetailed = true;
+       var that = $(this);
+       $('.configurator-title').html(that.attr('title'));
+       that.siblings().removeClass('active');
+       that.addClass('active');
+       $.post("/configurator/detail", {id: that.attr('data-id')},
+           function(data){
+               if (data.ok) {
+                   if (data.cnc) {
+                       $('.cnc div.radio').remove();
+                       for (i in data.cnc) {
+                           var input = $('<input type="radio" name="cnc" />').val(data.cnc[i]['name'])
+                           var div = $('<div></div>').addClass('radio').append(input[0].outerHTML).append(data.cnc[i]['name']);
+                           $('.cnc').append(div);
+                       }
+                   }
+                   if (data.drive) {
+                       $('.drive div.radio').remove();
+                       for (i in data.drive) {
+                           var input = $('<input type="radio" name="drive" />').val(data.drive[i]['name'])
+                           var div = $('<div></div>').addClass('radio').append(input[0].outerHTML).append(data.drive[i]['name']);
+                           $('.drive').append(div);
+                       }
+                   }
+                   if (data.chuck) {
+                       $('.chuck div.radio').remove();
+                       for (i in data.chuck) {
+                           var input = $('<input type="radio" name="chuck" />').val(data.chuck[i]['name'])
+                           var div = $('<div></div>').addClass('radio').append(input[0].outerHTML).append(data.chuck[i]['name']);
+                           $('.chuck').append(div);
+                       }
+                   }
+                   if (data.other) {
+                       $('.other div.checkbox').remove();
+                       for (i in data.other) {
+                           var input = $('<input type="checkbox" name="other" />').val(data.other[i]['name'])
+                           var div = $('<div></div>').addClass('checkbox').append(input[0].outerHTML).append(data.other[i]['name']);
+                           $('.other').append(div);
+                       }
+                   }
+               } else {
+                   alert('Ошибка!');
+               }
+               isDetailed = false;
+               $('input[name=cnc]')[0].checked = true;
+               $('input[name=drive]')[0].checked = true;
+               $('input[name=chuck]')[0].checked = true;
+               $('#send').attr('disabled', false);
+               $('.update').toggleClass('hidden');
+               $('.detail').toggleClass('hidden');
+           }, "json");
+   });
+
+   $(document).on('click', '#send', function(){
+       var fio = $('input[name=fio]').val();
+       var phone = $('input[name=phone]').val();
+       if (!fio || !phone) {
+           alert('Не заполнены обязательные поля!');
+           return;
+       }
+
+       var machine = $('.configurator-title').html();
+
+       var email = $('input[name=email]').val();
+       var cnc = $('input[name=cnc]:checked').val();
+       var drive = $('input[name=drive]:checked').val();
+       var chuck = $('input[name=chuck]:checked').val();
+       var other = $('input[name=other]:checked');
+
+       var otherValues = other.map(function(){
+           return $(this).val();
+       }).get();
+
+//       console.log(fio);
+//       console.log(phone);
+//       console.log(email);
+//       console.log(machine);
+//       console.log(cnc);
+//       console.log(drive);
+//       console.log(chuck);
+//       console.log(otherValues);
+
+       $.post("/configurator/order", {fio: fio, phone: phone, email: email, machine: machine, cnc: cnc, drive: drive, chuck: chuck, other: otherValues},
+       function(data){
+           $('input[name=fio]').val('');
+           $('input[name=phone]').val('');
+           $('input[name=email]').val('');
+           alert(data.content);
+       }, "json");
+   });
+   $('input[name=cnc]')[0].checked = true;
+   $('input[name=drive]')[0].checked = true;
+   $('input[name=chuck]')[0].checked = true;
+});

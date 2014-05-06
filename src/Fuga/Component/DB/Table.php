@@ -206,7 +206,7 @@ class Table {
 					$fieldType->getSQLValue();
 				} elseif ($field['type'] != 'listbox') {
 					$fieldType = $this->createFieldType($field, $entity);
-					if ('checkbox' == $field['type'] && true == $field['group_update']) {
+					if ('checkbox' == $field['type'] && isset($field['group_update'])) {
 						$values[$fieldType->getName()] = $this->get('util')->_postVar($fieldType->getName().$entity['id']);	
 					}
 					if ($this->get('util')->_postVar($fieldType->getName().$entity['id']) 

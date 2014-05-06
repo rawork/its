@@ -125,7 +125,7 @@ class CatalogController extends PublicController {
 		$this->get('mailer')->send(
 			'Ивтехсервис - запрос стоимости продукции от '.date('d.m.Y H:i'),
 			nl2br($letterText),
-			array($GLOBALS['ADMIN_EMAIL'], 'rawork@yandex.ru')
+			array($GLOBALS['ADMIN_EMAIL'])
 		);
 		return json_encode(array('content' => 'Ваша заявка принята. Мы будем рады помочь Вам.'));
 	}
@@ -148,7 +148,7 @@ class CatalogController extends PublicController {
 		$this->get('mailer')->send(
 			'Ивтехсервис - '.$titles[$type].' '.date('d.m.Y H:i'),
 			nl2br($letterText),
-			array($GLOBALS['ADMIN_EMAIL'], 'rawork@yandex.ru')
+			array($GLOBALS['ADMIN_EMAIL'])
 		);
 		return json_encode(array('content' => 'Ваше обращение отправлено менеджерам. Мы будем рады помочь Вам.'));
 	}
