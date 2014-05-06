@@ -614,6 +614,10 @@ div.analog span {
     margin: 20px 0;
 }
 
+.configurator-link2 {
+    margin: 20px 0;
+}
+
 .configurator-container .feed a {
     padding: 3px;
     text-align: center;

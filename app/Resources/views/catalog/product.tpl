@@ -4,6 +4,7 @@
 	<a href="{$node.foto_big}"><img src="{$node.foto_medium}" width="380"></a>
 </div>
 {if $node.producer_id_name}<div class="producer"><span>Производитель:</span> {$node.producer_id_name}</div>{/if}
+{if $node.is_configurator}<div class="configurator-link2"><a class="btn btn-warning btn-large" href="{raURL node=configurator}">Перейти к конфигуратору станка</a></div>{/if}
 <div>{$node.preview}</div>
 <div><br>{if $node.description}{$node.description}{elseif !$gallery}<p>Информация по этому виду товаров в настоящий момент готовится.</p>{/if}</div>
 {if $gallery}
