@@ -50,7 +50,7 @@
 				<div class="sideblock">
 					<div class="title">Выполнение заказов</div>
 					<div class="content">
-						<h3><strong><a href="/publicatshow">Просмотреть ход выполнения</a></strong></h3>
+						<h3><strong><a class="blink" href="/publicatshow">Просмотреть ход выполнения</a></strong></h3>
 					</div>
 				</div>
 				{*<div class="sideblock">*}

@@ -26,6 +26,12 @@ class CatalogController extends PublicController {
 			$this->get('container')->setVar('title', $node['name']);
 			$this->get('container')->setVar('h1', $node['name']);
 			$cats = $this->get('container')->getItems('catalog_category', 'parent_id='.$params[0].' AND publish=1');
+			if($node['id'] == 639) {
+				foreach ($cats as &$cat) {
+					$cat['products'] = $this->get('container')->getItems('catalog_product', 'category_id='.$cat['id'].' AND publish=1');
+				}
+				unset($cat);
+			}
 			$products = $this->get('container')->getItems('catalog_product', 'category_id='.$params[0].' AND publish=1');
 		} else {
 			$cats = $this->get('container')->getItems('catalog_category', 'parent_id=0 AND publish=1');
@@ -148,7 +154,7 @@ class CatalogController extends PublicController {
 		$this->get('mailer')->send(
 			'Ивтехсервис - '.$titles[$type].' '.date('d.m.Y H:i'),
 			nl2br($letterText),
-			array($GLOBALS['ADMIN_EMAIL'])
+			array($GLOBALS['ADMIN_EMAIL'], 'anik@ivtexservis.ru')
 		);
 		return json_encode(array('content' => 'Ваше обращение отправлено менеджерам. Мы будем рады помочь Вам.'));
 	}

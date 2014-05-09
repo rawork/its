@@ -623,7 +623,7 @@ div.analog span {
     text-align: center;
     width: 150px;
     display: inline-block;
-    border: 2px solid #999;
+    border: 2px solid #d0d0d0;
 }
 
 .configurator-container .feed a.active {
@@ -662,5 +662,9 @@ div.analog span {
     color: #de8a27;
     font-size: 16px;
     line-height: 30px;
+}
+
+.blink {
+    text-decoration: blink;
 }
 

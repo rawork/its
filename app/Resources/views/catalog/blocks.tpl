@@ -13,4 +13,7 @@
 <div class="clearfix"></div>
 <br>
 {/if}
+{if $block.id == 2}
+<div class="configurator-link2"><a class="btn btn-warning btn-large" href="{raURL node=configurator}">Перейти к конфигуратору токарного станка с ЧПУ</a></div>
+{/if}
 {/foreach}

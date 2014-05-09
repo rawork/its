@@ -1,18 +1,31 @@
 {if $is_cat}
-	{if $cats}
-	<ul{if $node.is_list != 1} class="catalog-contents"{/if}>
-	{foreach from=$cats item=item}
-	<li><a href="{raURL node=catalog method=index prms=$item.id}">{if $node.is_list != 1}<img src="{if $item.image_small}{$item.image_small}{else}/bundles/public/img/no_photo.gif{/if}" width="128" alt="{$item.name}" title="{$item.name}">{/if}{$item.name}</a></li>
-	{/foreach} 
-	</ul>
-	{/if}
-	{if $products}
-	<ul{if $node.is_list != 1} class="catalog-contents2"{/if}>
-	{foreach from=$products item=item}
-	<li><a href="{raURL node=catalog method=product prms=$item.id}">{if $node.is_list != 1}<img src="{if $item.foto_small}{$item.foto_small}{else}/bundles/public/img/no_photo.gif{/if}" width="128" alt="{$item.name}" title="{$item.name}">{/if}{$item.name} {if $item.analog}<span class="analog">(аналог станка {$item.analog})</span>{/if}</a></li>
-	{/foreach} 
-	</ul>
-	{/if}
+    {if $node.id == 639}
+        {foreach from=$cats item=cat}
+        <br><br>
+        <h2><span>{$cat.name}</span></h2>
+        <ul{if $node.is_list != 1} class="catalog-contents2"{/if}>
+            {foreach from=$cat.products item=item}
+                <li><a href="{raURL node=catalog method=product prms=$item.id}">{if $node.is_list != 1}<img src="{if $item.foto_small}{$item.foto_small}{else}/bundles/public/img/no_photo.gif{/if}" width="128" alt="{$item.name}" title="{$item.name}">{/if}{$item.name} {if $item.analog}<span class="analog">(аналог станка {$item.analog})</span>{/if}</a></li>
+            {/foreach}
+        </ul>
+        <div class="clearfix"></div>
+        {/foreach}
+    {else}
+        {if $cats}
+        <ul{if $node.is_list != 1} class="catalog-contents"{/if}>
+        {foreach from=$cats item=item}
+        <li><a href="{raURL node=catalog method=index prms=$item.id}">{if $node.is_list != 1}<img src="{if $item.image_small}{$item.image_small}{else}/bundles/public/img/no_photo.gif{/if}" width="128" alt="{$item.name}" title="{$item.name}">{/if}{$item.name}</a></li>
+        {/foreach}
+        </ul>
+        {/if}
+        {if $products}
+        <ul{if $node.is_list != 1} class="catalog-contents2"{/if}>
+        {foreach from=$products item=item}
+        <li><a href="{raURL node=catalog method=product prms=$item.id}">{if $node.is_list != 1}<img src="{if $item.foto_small}{$item.foto_small}{else}/bundles/public/img/no_photo.gif{/if}" width="128" alt="{$item.name}" title="{$item.name}">{/if}{$item.name} {if $item.analog}<span class="analog">(аналог станка {$item.analog})</span>{/if}</a></li>
+        {/foreach}
+        </ul>
+        {/if}
+    {/if}
 	<div class="clearfix"></div>
 	<div>{$node.preview}</div>
 	<div>{$node.description}</div>

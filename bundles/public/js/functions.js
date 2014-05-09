@@ -112,7 +112,29 @@ function feedbackSend() {
 
 var isDetailed = false;
 
+var x = 1;
+var col = new String();
+
+function blink()
+{
+    if (x%2) {
+        col = "rgb(222,138,39)";
+    } else {
+        col = "rgb(0,0,0)";
+    }
+
+    $('.blink').css('color', col);
+    x++;
+    if(x>2){
+        x=1
+    }
+    setTimeout("blink()",750);
+}
+
 $(document).ready(function(){
+
+   blink();
+
    $(document).on('click', '.feed a', function(e){
        e.preventDefault();
        if (isDetailed){

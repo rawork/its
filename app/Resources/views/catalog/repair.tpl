@@ -1,5 +1,6 @@
 {if count($items)}
-<h2><span>Ремонт и модернизация</span></h2>
+<h2><span><a href="{raURL node=catalog method=index prms=639}">Ремонт и модернизация</a></span></h2>
+
 <div class="repair-title">Модернизация токарного станка c ЧПУ модели 16А20Ф3</div>
 <div class="repair-container">
     <div class="repair-foto"><img src="/bundles/public/img/repair.jpg"></div>
@@ -15,7 +16,6 @@
         </div>
     </div>
 </div>
-<div class="configurator-link"><a class="btn btn-warning btn-large" href="{raURL node=configurator}">Перейти к конфигуратору токарного станка с ЧПУ{* <br> (аналоги 16А20Ф3, 16К20Ф3, 16К30Ф3, 16М30Ф3) *}</a></div>
 <ul class="catalog-contents">
 {foreach from=$items item=item}
 <li>
