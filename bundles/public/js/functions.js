@@ -135,6 +135,15 @@ $(document).ready(function(){
 
    blink();
 
+   $(document).on('click','.cnc input', function(){
+       if ($(this).attr('data-id') == 1) {
+           $('.description ul li ul').parent().removeClass('hidden');
+       } else {
+           $('.description ul li ul').parent().addClass('hidden');
+       }
+
+   });
+
    $(document).on('click', '.feed a', function(e){
        e.preventDefault();
        if (isDetailed){
@@ -151,10 +160,11 @@ $(document).ready(function(){
        $.post("/configurator/detail", {id: that.attr('data-id')},
            function(data){
                if (data.ok) {
+                   $('.description').html(data.description);
                    if (data.cnc) {
                        $('.cnc div.radio').remove();
                        for (i in data.cnc) {
-                           var input = $('<input type="radio" name="cnc" />').val(data.cnc[i]['name'])
+                           var input = $('<input type="radio" name="cnc" />').val(data.cnc[i]['name']).attr('data-id', data.cnc[i]['id']);
                            var div = $('<div></div>').addClass('radio').append(input[0].outerHTML).append(data.cnc[i]['name']);
                            $('.cnc').append(div);
                        }

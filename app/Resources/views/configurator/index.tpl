@@ -11,10 +11,14 @@
     <div class="configurator-title">{$machine.name}</div>
     <div class="update hidden">Подождите, обновляются допустимые параметры конфигурации...</div>
     <div class="detail">
+        <div class="group base">
+            <div class="title">Базовая комплектация</div>
+            <div class="description">{$machine.description}</div>
+        </div>
         <div class="group cnc">
             <div class="title">Система ЧПУ</div>
             {foreach from=$cnc item=item}
-            <div class="radio"><input type="radio" name="cnc" value="{$item.name}"> {$item.name}</div>
+            <div class="radio"><input type="radio" data-id="{$item.id}" name="cnc" value="{$item.name}"> {$item.name}</div>
             {/foreach}
         </div>
         <div class="group drive">

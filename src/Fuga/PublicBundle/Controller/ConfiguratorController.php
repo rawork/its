@@ -40,6 +40,8 @@ class ConfiguratorController extends PublicController
 	{
 		$id = $this->get('util')->_postVar('id');
 
+		$machine = $this->get('container')->getItem('configurator_machine', $id);
+
 		$cnc = $this->get('container')->getItems('configurator_cnc', 'publish=1 AND FIND_IN_SET('.$id.', machine)');
 		$drives = $this->get('container')->getItems('configurator_drive', 'publish=1 AND FIND_IN_SET('.$id.', machine)');
 		$chucks = $this->get('container')->getItems('configurator_chuck', 'publish=1 AND FIND_IN_SET('.$id.', machine)');
@@ -47,6 +49,7 @@ class ConfiguratorController extends PublicController
 
 		return json_encode(array(
 			'ok' => true,
+			'description' => $machine['description'],
 			'cnc' => $cnc,
 			'drive' => $drives,
 			'chuck' => $chucks,
