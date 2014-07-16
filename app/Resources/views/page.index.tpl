@@ -42,7 +42,18 @@
 						<ul class="menu">
 						<li class="leaf"><a href="/" class="active">Главная</a></li>
 						{foreach item=node from=$links}
-						<li class="{$node.class}"><a href="{$node.ref}">{$node.title}</a></li>
+                        {if $node.children}
+                            {assign var=nodeclass value=collapsed}
+                        {else}
+                            {assign var=nodeclass value=leaf}
+                        {/if}
+                        <li class="{$nodeclass}"><a href="{$node.ref}">{$node.title}</a>
+                            <ul class="menu">
+                                {foreach item=subnode from=$node.children}
+                                <li class="leaf"><a href="{$subnode.ref}">{$subnode.title}</a></li>
+                                    {/foreach}
+                            </ul>
+                        </li>
 						{/foreach}
 						</ul>
 					</div>

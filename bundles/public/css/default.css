@@ -106,6 +106,14 @@ div.container {
 	padding: 20px 0 20px 1px;
 }
 
+li.collapsed ul {
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid #e2e2e2;
+    padding: 5px;
+    display: none;
+}
+
 .sideblock div.title {
 	padding: 1px 15px 0;
 	min-height: 20px;
@@ -146,6 +154,10 @@ ul.menu ul li {
 
 ul.menu li.expanded {
 	background: url(../img/menu-expand.gif) no-repeat 0 5px;
+}
+
+ul.menu li.collapsed {
+    background: url(../img/menu-expand.gif) no-repeat 0 5px;
 }
 
 .maincontent {

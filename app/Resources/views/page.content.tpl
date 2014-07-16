@@ -43,23 +43,16 @@
 						<li class="leaf"><a href="/" class="active">Главная</a></li>
 						{foreach item=node from=$links}
 						{if $node.children}
-							{if $curnode.id == $node.id || $curnode.parent_id == $node.id}
-							{assign var=nodeclass value=expanded}
-							{assign var=showchildren value=1}
-							{else}
 							{assign var=nodeclass value=collapsed}
-							{/if}
 						{else}
 						{assign var=nodeclass value=leaf}
 						{/if}
 						<li class="{$nodeclass}"><a href="{$node.ref}">{$node.title}</a>
-						{if $showchildren}
-							<ul class="menu">
+							<ul class="menu {$nodeclass}">
 								{foreach item=subnode from=$node.children}
-								<li class="leaf"><a href="{$subnode.ref}">{$subnode.title}</a>	
+								<li class="leaf"><a href="{$subnode.ref}">{$subnode.title}</a></li>
 								{/foreach}
 							</ul>
-						{/if}
 						</li>
 						{/foreach}
 						</ul>

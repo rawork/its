@@ -7,15 +7,15 @@ use Fuga\AdminBundle\Controller\AdminController;
 use Fuga\AdminBundle\Admin\Admin;
 use Fuga\Component\Archive\GZipArchive;
 
-class AdminAjaxController extends Controller {
-	
-	/** 
+class AdminAjaxController extends Controller
+{
+	/**
 	 * Смена Меню компонентов при выборе группы функций
 	 * @param string $state
 	 * @param string $moduleName
 	 * @return string 
 	 */
-	function getComponentList($state, $moduleName = '') 
+	public function getComponentList($state, $moduleName = '')
 	{
 		$this->get('router')->setParam('state', $state);
 		$this->get('router')->setParam('module', $moduleName);
@@ -174,7 +174,6 @@ class AdminAjaxController extends Controller {
 			if (isset($node[$fieldName]))
 				$vname .= ($vname ? ' ' : '').$node[$fieldName];
 		$text = '<li><a rel="'.$node['id'].'" href="javascript:void(0)" class="popup-item">'.$vname.' ('.$node['id'].')</a>';
-		$this->counter++;
 		$children = $nodes[$node['id']]['children'];
 		if (count($children)) {
 			$text .= '<ul>'; 

@@ -133,7 +133,19 @@ function blink()
 
 $(document).ready(function(){
 
-   blink();
+    blink();
+
+    $(document).on('mouseenter', 'li.collapsed', function(){
+        var pos = $(this).position();
+        $(this).children('ul').css({left: pos.left + $(this).children('a').width() + 20, 'margin-top': -20});
+        $(this).children('ul').fadeIn(100, 'swing');
+    });
+
+    $(document).on('mouseleave', 'li.collapsed', function(){
+        $(this).children('ul').fadeOut(100, 'swing');
+    });
+
+//    $('li.collapsed').trigger('mouseleave');
 
    $(document).on('click','.cnc input', function(){
        if ($(this).attr('data-id') == 1) {
