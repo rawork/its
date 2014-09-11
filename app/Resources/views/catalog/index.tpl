@@ -3,8 +3,8 @@
         <div class="catalog-wide">
             {foreach from=$products item=item}
             <div class="row-fluid">
-                <div class="span2">
-                    <img class="pull-left" src="{if $item.foto_small}{$item.foto_small}{else}/bundles/public/img/no_photo.gif{/if}">
+                <div class="span2 text-center">
+                    <img src="{if $item.foto_small}{$item.foto_small}{else}/bundles/public/img/no_photo.gif{/if}">
                 </div>
                 <div class="span7">
                     <div class="name"><a href="{raURL node=catalog method=product prms=$item.id}">{$item.name}</a></div>
