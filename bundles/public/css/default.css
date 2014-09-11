@@ -680,3 +680,7 @@ div.analog span {
     text-decoration: blink;
 }
 
+
+.catalog-wide .row-fluid {
+    border: 1px solid #e1e1e1;
+}
