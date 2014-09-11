@@ -8,13 +8,13 @@
                 </div>
                 <div class="span7">
                     <div class="name"><a href="{raURL node=catalog method=product prms=$item.id}">{$item.name}</a></div>
-                    {if $item.analog}<div class="analog">(аналог станка {$item.analog})</div>{/if}
-                    <div class="producer">{$item.producer_id_name}</div>
+                    {if $item.analog}<div class="analog">Аналог станка {$item.analog}</div>{/if}
+                    <div class="producer">Производитель: {$item.producer_id_name}</div>
                     <div class="preview">{$item.preview}</div>
                 </div>
-                <div class="span3 text-center">
-                    <a href="{raURL node=catalog method=product prms=$item.id}">Описание</a><br>
-                    <a href="{raURL node=configurator}">Конфигуратор</a><br>
+                <div class="span3 text-center links">
+                    <a href="{raURL node=catalog method=product prms=$item.id}">Описание</a>
+                    <a href="{raURL node=configurator}">Конфигуратор</a>
                     <a href="{raURL node=catalog method=product prms=$item.id}#price">Запрос стоимости</a>
                 </div>
             </div>
