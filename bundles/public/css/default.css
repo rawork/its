@@ -684,3 +684,19 @@ div.analog span {
 .catalog-wide .row-fluid {
     border: 1px solid #e1e1e1;
 }
+
+.catalog-wide .name {
+    font-size: 16px;
+}
+
+.catalog-wide .analog {
+    margin: 0;
+}
+
+.catalog-wide .producer {
+    margin:0;
+}
+
+.catalog-wide .preview {
+    margin:0;
+}
