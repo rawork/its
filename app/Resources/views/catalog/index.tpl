@@ -3,7 +3,7 @@
         <div class="catalog-wide">
             {foreach from=$products item=item}
             <div class="row-fluid">
-                <div class="span2 text-center">
+                <div class="span3 text-center">
                     <img src="{if $item.foto_small}{$item.foto_small}{else}/bundles/public/img/no_photo.gif{/if}">
                 </div>
                 <div class="span7">
@@ -12,7 +12,7 @@
                     <div class="producer">{if $item.producer_id}Производитель: {$item.producer_id_name}{/if}</div>
                     <div class="preview">{$item.preview}</div>
                 </div>
-                <div class="span3 text-center links">
+                <div class="span2 text-center links">
                     <a href="{raURL node=catalog method=product prms=$item.id}">Описание</a>
                     {if $item.is_configurator}<a href="{raURL node=configurator}">Конфигуратор</a>{/if}
                     <a href="{raURL node=catalog method=product prms=$item.id}#price">Запрос стоимости</a>
