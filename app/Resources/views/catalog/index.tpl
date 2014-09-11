@@ -14,7 +14,7 @@
                 </div>
                 <div class="span3 text-center links">
                     <a href="{raURL node=catalog method=product prms=$item.id}">Описание</a>
-                    <a href="{raURL node=configurator}">Конфигуратор</a>
+                    {if $item.is_configurator}<a href="{raURL node=configurator}">Конфигуратор</a>{/if}
                     <a href="{raURL node=catalog method=product prms=$item.id}#price">Запрос стоимости</a>
                 </div>
             </div>
