@@ -1,5 +1,18 @@
 {if $is_cat}
-    {if $node.id == 639}
+    {if $node.id == 4}
+        <div class="catalog-wide">
+            {foreach from=$products item=item}
+            <div class="category">
+                <img class="pull-left" src="{if $item.foto_small}{$item.foto_small}{else}/bundles/public/img/no_photo.gif{/if}">
+                <div class
+                <div class="name"><a href="{raURL node=catalog method=product prms=$item.id}">{$item.name}</a></div>
+                {if $item.analog}<div class="analog">(аналог станка {$item.analog})</div>{/if}
+                <div class="producer">{$item.producer_id_name}</div>
+                <div class="preview">{$item.preview}</div>
+            </div>
+            {/foreach}
+        </div>
+    {elseif $node.id == 639}
         {foreach from=$cats item=cat}
         <br><br>
         <h2><span>{$cat.name}</span></h2>
