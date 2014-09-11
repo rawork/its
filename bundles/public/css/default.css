@@ -690,11 +690,15 @@ div.analog span {
 }
 
 .catalog-wide .analog {
-    margin: 0;
+    margin:0;
+    padding-top: 5px;
+    font-size: 14px;
 }
 
 .catalog-wide .producer {
     margin:0;
+    padding-top: 5px;
+    font-size: 14px;
 }
 
 .catalog-wide .preview {
