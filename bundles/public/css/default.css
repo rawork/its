@@ -681,8 +681,9 @@ div.analog span {
 }
 
 
-.catalog-wide .row-fluid {
+.catalog-wide>.row-fluid {
     border: 1px solid #e1e1e1;
+    margin-bottom: 15px;
 }
 
 .catalog-wide .name {
