@@ -705,3 +705,8 @@ div.analog span {
 .catalog-wide .preview {
     margin:0;
 }
+
+.catalog-wide .links a {
+    display: block;
+    margin: 5px;
+}
