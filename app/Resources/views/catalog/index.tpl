@@ -1,5 +1,5 @@
 {if $is_cat}
-    {if $node.id == 4}
+    {if $node.id == 4 || $node.id == 5 || $node.id == 6 || $node.id == 9}
         <div class="catalog-wide">
             {foreach from=$products item=item}
             <div class="row-fluid">
