@@ -8,6 +8,7 @@
 <div>{$node.preview}</div>
 <div><br>{if $node.description}{$node.description}{elseif !$gallery}<p>Информация по этому виду товаров в настоящий момент готовится.</p>{/if}</div>
 {if $gallery}
+<a name="gallery"></a>
 {*<h3><span>Галерея</span></h3>*}
 <div id="galleria">
 	{foreach from=$gallery item=foto}
