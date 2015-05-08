@@ -107,7 +107,9 @@
 			</div>
 			<div class="span9 maincontent">
 				<h1><span>Компания &laquo;Ивтехсервис&raquo;<br> <strong>Сильнее стали!</strong></span></h1>
-				{raMethod path=Fuga:Public:Common:block args='["name":"welcome"]'}
+
+                {raMethod path=Fuga:Public:Common:block args='["name":"banner"]'}
+                {raMethod path=Fuga:Public:Common:block args='["name":"welcome"]'}
 				
 				{raMethod path=Fuga:Public:Catalog:leaders}
 				{raMethod path=Fuga:Public:Catalog:repair}
@@ -179,6 +181,6 @@
 	</div>
 	<script type="text/javascript" src="/bundles/public/js/jquery.js"></script>
 	<script type="text/javascript" src="/bundles/bootstrap_new/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/bundles/public/js/functions.js"></script>
+	<script type="text/javascript" src="/bundles/public/js/functions.js?20150508"></script>
 </body>
 </html>

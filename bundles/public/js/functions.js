@@ -68,7 +68,9 @@ function feedbackOpen(type) {
 		$('#feedback-title').html('Обращение с благодарностью');
 	} else if (type === 3) {
 		$('#feedback-title').html('Обратная связь');
-	}
+	}  else if (type === 4) {
+        $('#feedback-title').html('Регистрация на семинар');
+    }
 	$('input[name=feedback_type]').val(type);
 	$('#feedbackform').addClass('hidden');
 	$('#myModal').modal('show');
