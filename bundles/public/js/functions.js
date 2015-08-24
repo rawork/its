@@ -1,3 +1,44 @@
+(function($) {
+    $(function() {
+
+        if (jQuery().jcarousel) {
+            $('.jcarousel').jcarousel({
+                wrap: 'both'
+            });
+
+            $('.slider-wrapper>.jcarousel').jcarouselAutoscroll({
+                interval: 3000
+            });
+
+            $('.jcarousel-control-prev')
+                .on('jcarouselcontrol:active', function() {
+                    $(this).removeClass('inactive');
+                })
+                .on('jcarouselcontrol:inactive', function() {
+                    $(this).addClass('inactive');
+                })
+                .jcarouselControl({
+                    target: '-=1'
+                });
+
+            $('.jcarousel-control-next')
+                .on('jcarouselcontrol:active', function() {
+                    $(this).removeClass('inactive');
+                })
+                .on('jcarouselcontrol:inactive', function() {
+                    $(this).addClass('inactive');
+                })
+                .jcarouselControl({
+                    target: '+=1'
+                });
+
+        }
+
+    });
+
+})(jQuery);
+
+
 $(window).resize(function() {
 	resizeHandle();
 });
@@ -261,3 +302,5 @@ $(document).ready(function(){
    $('input[name=drive]')[0].checked = true;
    $('input[name=chuck]')[0].checked = true;
 });
+
+

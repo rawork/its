@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <head>
-<title>{$title}</title>
-{$meta}
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/bundles/bootstrap_new/css/bootstrap.css" type="text/css">
-<link rel="stylesheet" href="/bundles/public/css/default.css" type="text/css">
-<link href="/favicon.ico” rel=”icon” type=”image/x-icon” />
-<link href="/favicon.ico” rel=”shortcut icon” type=”image/x-icon” />
+    <title>{$title}</title>
+    {$meta}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bundles/bootstrap_new/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/bundles/public/css/jcarousel.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/bundles/public/css/default.css" type="text/css">
+    <link href="/favicon.ico” rel=”icon” type=”image/x-icon” />
+    <link href="/favicon.ico” rel=”shortcut icon” type=”image/x-icon” />
 </head>
 <body>
 	<div class="container">
@@ -91,6 +92,12 @@
 						</p>
 					</div>
 				</div>
+                <div class="sideblock">
+                    <div class="title">Сертификаты</div>
+                    <div class="content">
+                        {raMethod path=Fuga:Public:Sertificate:feed}
+                    </div>
+                </div>
 				<div class="sideblock">
 					<div class="title">Активно участвуем</div>
 					<div class="content">
@@ -181,6 +188,7 @@
 	</div>
 	<script type="text/javascript" src="/bundles/public/js/jquery.js"></script>
 	<script type="text/javascript" src="/bundles/bootstrap_new/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/bundles/public/js/functions.js?20150508"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.3/jquery.jcarousel.min.js"></script>
+	<script type="text/javascript" src="/bundles/public/js/functions.js?20150824"></script>
 </body>
 </html>

@@ -713,3 +713,7 @@ div.analog span {
     display: block;
     margin: 5px;
 }
+
+.sertificate-container {
+    text-align: center;
+}
