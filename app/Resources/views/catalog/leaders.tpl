@@ -12,7 +12,7 @@
 <div class="clearfix"></div>
 <br>
 {/if}
-<h2><span>Токарный обрабатывающий центр LSB200/1000S</span></h2>
+<div class="repair-title">Токарный обрабатывающий центр LSB200/1000S</div>
 <br>
 <div class="repair-container">
     <div class="repair-foto"><img src="/bundles/public/img/leader.jpg"></div>
