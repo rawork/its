@@ -13,6 +13,7 @@
 <br>
 {/if}
 <h2><span>Токарный обрабатывающий центр LSB200/1000S</span></h2>
+<br>
 <div class="repair-container">
     <div class="repair-foto"><img src="/bundles/public/img/leader.jpg"></div>
     <div class="leader-text-container">
