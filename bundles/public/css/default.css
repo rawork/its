@@ -621,6 +621,60 @@ div.analog span {
     top: -141px;
 }
 
+.leader-text-container .texts {
+	position: relative;
+}
+
+.leader-text-container .text {
+	font-weight: bold;
+	line-height: 15px;
+	text-align: left;
+	position: absolute;
+}
+
+.leader-text-container .text1 {
+	left: 15px;
+	top: -407px;
+}
+
+.leader-text-container .text2 {
+	left: 220px;
+	top: -407px;
+}
+
+.leader-text-container .text3 {
+	text-align: right;
+	right: 20px;
+	top: -407px;
+}
+
+.leader-text-container .text4 {
+	left: 15px;
+	top: -75px;
+}
+
+.leader-text-container .text5 {
+	left: 130px;
+	top: -75px;
+}
+
+.leader-text-container .text6 {
+	left: 307px;
+	top: -30px;
+}
+
+.leader-text-container .text7 {
+	text-align: right;
+	left: 333px;
+	top: -60px;
+}
+
+.leader-text-container .text8 {
+	text-align: right;
+	left: 500px;
+	top: -60px;
+}
+
 .configurator-link {
     padding-left: 100px;
     margin: 20px 0;
