@@ -221,5 +221,22 @@
 	<noscript><div><img src="https://mc.yandex.ru/watch/36632010" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 	<!-- /Yandex.Metrika counter -->
 	{/literal}
+	{literal}
+		<script type="text/javascript">
+			(function(){
+				if (typeof carrotquest === 'undefined') {
+					var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+					s.src = '//cdn.carrotquest.io/api.min.js';
+					var x = document.getElementsByTagName('head')[0]; x.appendChild(s);
+
+					carrotquest = {}; window.carrotquestasync = []; carrotquest.settings = {};
+					m = ['connect', 'track', 'identify', 'auth', 'open', 'onReady', 'addCallback', 'removeCallback', 'trackMessageInteraction'];
+					function Build(name, args){return function(){window.carrotquestasync.push(name, arguments);} }
+					for (var i = 0; i < m.length; i++) carrotquest[m[i]] = Build(m[i]);
+				}
+			})();
+			carrotquest.connect('5593-fb32181f017301f6fc9e1755781');
+		</script>
+	{/literal}
 </body>
 </html>

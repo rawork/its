@@ -124,3 +124,7 @@ try { var yaCounter97526 = new Ya.Metrika({id:97526,
 			//--></script>
 			<!--/LiveInternet-->
 			{/literal}
+
+{literal}
+
+{/literal}
