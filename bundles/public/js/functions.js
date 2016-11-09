@@ -190,16 +190,24 @@ $(document).ready(function(){
 
 //    $('li.collapsed').trigger('mouseleave');
 
-   $(document).on('click','.cnc input', function(){
+    $(document).on('click','.cnc input', function(){
        if ($(this).attr('data-id') == 1) {
            $('.description ul li ul').parent().removeClass('hidden');
        } else {
            $('.description ul li ul').parent().addClass('hidden');
        }
 
-   });
+    });
 
-   $(document).on('click', '.feed a', function(e){
+    $(document).on('click', '.feedback-list a', function(e){
+        e.preventDefault();
+
+        var href = $(this).attr('href');
+
+        window.open(href, 'feedback', "width=600,height=800,menubar=no,toolbar=no,location=no");
+    });
+
+    $(document).on('click', '.feed a', function(e){
        e.preventDefault();
        if (isDetailed){
            return;
@@ -259,9 +267,9 @@ $(document).ready(function(){
                $('.update').toggleClass('hidden');
                $('.detail').toggleClass('hidden');
            }, "json");
-   });
+    });
 
-   $(document).on('click', '#send', function(){
+    $(document).on('click', '#send', function(){
        var fio = $('input[name=fio]').val();
        var phone = $('input[name=phone]').val();
        if (!fio || !phone) {
@@ -281,14 +289,14 @@ $(document).ready(function(){
            return $(this).val();
        }).get();
 
-//       console.log(fio);
-//       console.log(phone);
-//       console.log(email);
-//       console.log(machine);
-//       console.log(cnc);
-//       console.log(drive);
-//       console.log(chuck);
-//       console.log(otherValues);
+    //       console.log(fio);
+    //       console.log(phone);
+    //       console.log(email);
+    //       console.log(machine);
+    //       console.log(cnc);
+    //       console.log(drive);
+    //       console.log(chuck);
+    //       console.log(otherValues);
 
        $.post("/configurator/order", {fio: fio, phone: phone, email: email, machine: machine, cnc: cnc, drive: drive, chuck: chuck, other: otherValues},
        function(data){
@@ -297,10 +305,10 @@ $(document).ready(function(){
            $('input[name=email]').val('');
            alert(data.content);
        }, "json");
-   });
-   $('input[name=cnc]')[0].checked = true;
-   $('input[name=drive]')[0].checked = true;
-   $('input[name=chuck]')[0].checked = true;
+    });
+    $('input[name=cnc]')[0].checked = true;
+    $('input[name=drive]')[0].checked = true;
+    $('input[name=chuck]')[0].checked = true;
 });
 
 
