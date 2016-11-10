@@ -147,7 +147,7 @@
 	<script type="text/javascript" src="/bundles/public/js/jquery.js"></script>
 	<script type="text/javascript" src="/bundles/bootstrap_new/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/bundles/galleria/galleria-1.2.9.min.js"></script>
-	<script type="text/javascript" src="/bundles/public/js/functions.js"></script>
+	<script type="text/javascript" src="/bundles/public/js/functions.js?2016110901"></script>
 	<script type="text/javascript">
 		{$javascript}
     </script>
