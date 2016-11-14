@@ -192,6 +192,21 @@
 	<script type="text/javascript" src="/bundles/public/js/functions.js?20150824"></script>
 	{literal}
 		<!-- Yandex.Metrika counter -->
+		<script src="https://mc.yandex.ru/metrika/watch.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			try {
+				var yaCounter97526 = new Ya.Metrika({
+					id:97526,
+					clickmap:true,
+					trackLinks:true,
+					accurateTrackBounce:true,
+					webvisor:true
+				});
+			} catch(e) { }
+		</script>
+		<noscript><div><img src="https://mc.yandex.ru/watch/97526" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
+		<!-- Yandex.Metrika counter -->
 		<script type="text/javascript">
 			(function (d, w, c) {
 				(w[c] = w[c] || []).push(function() {

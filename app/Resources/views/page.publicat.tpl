@@ -13,5 +13,22 @@
 	<p class="title"><a title="�&#65533;втехсервис" href="/">�&#65533;втехсервис</a><span>&nbsp;- Выполнение заказов</span></p>
 </div>
 {eval var=$mainbody}
+{literal}
+	<!-- Yandex.Metrika counter -->
+	<script src="https://mc.yandex.ru/metrika/watch.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		try {
+			var yaCounter97526 = new Ya.Metrika({
+				id:97526,
+				clickmap:true,
+				trackLinks:true,
+				accurateTrackBounce:true,
+				webvisor:true
+			});
+		} catch(e) { }
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/97526" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->
+{/literal}
 </body>
 </html>
