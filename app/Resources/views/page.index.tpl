@@ -252,6 +252,19 @@
 			})();
 			carrotquest.connect('5593-fb32181f017301f6fc9e1755781');
 		</script>
+		<!-- StreamWood code -->
+		<link href="https://clients.streamwood.ru/StreamWood/sw.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="https://clients.streamwood.ru/StreamWood/sw.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			swQ(document).ready(function(){
+				swQ().SW({
+					swKey: '077634601aceeca8f23d118414476e0d',
+					swDomainKey: 'f9b1a29a5a94d0c6f03c6d4f77271265'
+				});
+				swQ('body').SW('load');
+			});
+		</script>
+		<!-- /StreamWood code -->
 	{/literal}
 </body>
 </html>
